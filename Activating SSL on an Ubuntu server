@@ -1,0 +1,8 @@
+Activating SSL on an Ubuntu server
+
+sudo apt update
+sudo apt install certbot python3-certbot-apache
+sudo certbot --apache -d yourdomain.com -d www.yourdomain.com
+sudo certbot certificates
+sudo certbot renew --dry-run
+sudo systemctl restart apache2

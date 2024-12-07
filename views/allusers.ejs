@@ -1,0 +1,17 @@
+<% include partials/header %>
+
+<div class="profile">
+	<div class="container">
+		
+		<% include ./profile/partials/profile-content-tabs.ejs %>
+
+		<div class="content">
+			<p class="sub-class">All Users<span class="small-text"> (super admin view only)</span></p>
+			<% allUsers.forEach(function(user) { %>
+				<div><span class="small-text">id <%= user.id %>. </span><a href="/profile/<%= user.id %>"><%= user.username%></a><span class="small-text"> user referral code: <%= user.user_code%></span></div>
+			<% }) %>
+		</div>
+	</div>
+</div>
+
+<% include partials/footer %>

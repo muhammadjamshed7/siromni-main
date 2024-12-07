@@ -1,0 +1,45 @@
+<% include crm-partials/crmHeader %>
+
+<div class="container crm page">
+	<% include crm-partials/navTabs %>
+	<hr>
+	<a href="/onlineoffice/project/<%= pipeline[0].project_id %>" class="float-right"> << Return to project</a>
+	<p id="title"><%= pipeline[0].title %></p>
+	<% if (currentUser.is_superAdmin) { %>
+		<form action="/onlineoffice/project/<%= pipeline[0].project_id %>/pipeline/<%= pipeline[0].id %>?_method=DELETE" method="POST">
+			<button class="btn btn-danger btn-sm float-right">Delete pipeline</button>
+		</form>
+	<% } %>
+
+	<div>
+		<p class="sub-title">Candidates</p>
+		<p class="point-cursor" data-toggle="modal" data-target="#add-candidate-form"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add a new candidate</p>
+		<div>
+			<% for (var i=0;i<candidates.length;i++) { %>
+				<% if (candidates[i].user_id === currentUser.id) { %>
+					<a href="/onlineoffice/project/<%= pipeline[0].project_id %>/pipeline/<%= pipeline[0].id %>/candidate/<%= candidates[i].candidate_id %>"><button class="btn btn-primary pipeline-btn"><%= candidates[i].title %></button></a>
+				<% } %>
+			<% } %>
+		</div>
+	</div>
+</div>
+
+<!-- modal start -->
+<div class="modal" id="add-candidate-form" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+  	<div class="modal-content">
+  		<button class="btn btn-danger btn-sm close-modal-form" data-dismiss="modal">Close</button>
+  		<h3>Create a New Candidate</h3>
+  		<form action="/onlineoffice/project/<%= pipeline[0].project_id %>/pipeline/<%= pipeline[0].id %>/createcandidate" method="POST">
+				<div class="form-group">
+					<label for="title">Name</label>
+					<input type="text" name="title" class="form-control">
+				</div>
+	  		<button class="btn btn-success">Create</button>
+	  	</form>
+		</div>
+	</div>
+</div>
+<!-- modal end -->
+
+<% include crm-partials/crmFooter %>

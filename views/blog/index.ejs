@@ -1,0 +1,23 @@
+<% include partials/header %>
+
+<div class="container blog page">
+  <% include ../profile/partials/profile-content-tabs.ejs %>
+  <% if (currentUser.id == userInfo[0].user_id) { %>
+    <a href="/blog/<%= currentUser.id %>/new"><button class="btn btn-primary">Create Blog</button></a>
+  <% } %>
+  <div>
+    <% posts.reverse().forEach(function(post) { %>
+      <div class="post-list">
+        <a href="/blog/<%= post.user_id %>/post/<%= post.id %>" class="sub-title"><%= post.title %></a>
+        <p class="small-text"><%= post.created_at %></p>
+        <% if (post.body.length < 500) { -%>
+          <p><%= post.body %></p>
+        <% } else { -%>
+          <p><%= post.body.substring(0, 500); %><span class="display-none full-post"><%= post.body %></span> <span class="point-cursor">...</span></p>
+        <% } -%>
+      </div>
+    <% }) %>
+  </div>
+</div>
+
+<% include partials/footer %>

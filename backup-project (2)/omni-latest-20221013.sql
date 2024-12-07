@@ -1,0 +1,2878 @@
+/*
+SQLyog Community v13.1.9 (64 bit)
+MySQL - 8.0.30-0ubuntu0.22.04.1 : Database - omni
+*********************************************************************
+*/
+
+/*!40101 SET NAMES utf8 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`omni` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
+USE `omni`;
+
+/*Table structure for table `apps` */
+
+DROP TABLE IF EXISTS `apps`;
+
+CREATE TABLE `apps` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `title` char(50) DEFAULT NULL,
+  `key` int DEFAULT NULL,
+  `route` char(25) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=136 DEFAULT CHARSET=utf8mb3;
+
+/*Data for the table `apps` */
+
+insert  into `apps`(`id`,`title`,`key`,`route`) values 
+(1,'profile',1,'profile'),
+(2,'office',5,'office'),
+(4,'crm',4,'onlineoffice'),
+(5,'process',3,'opportunity'),
+(6,'linkstore',6,'linkstore'),
+(7,'interview',7,'interview'),
+(8,'storage',8,'storage'),
+(9,'ecrm',9,'office'),
+(11,'blog',0,'blog'),
+(91,'Odoo',0,'https://www.odoo.com/pric'),
+(94,'test',0,'omnilives.com/test'),
+(104,'test2',0,'omnitogether.herokuapp.co'),
+(114,'qweqwe',123,'123'),
+(124,'asdfdASSD',34,'https://omnitogether.hero'),
+(134,'Search',1000,'Google.com'),
+(135,'Search2',90,'Google.com');
+
+/*Table structure for table `backoffice_intro` */
+
+DROP TABLE IF EXISTS `backoffice_intro`;
+
+CREATE TABLE `backoffice_intro` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `secondary_title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `intro_summary` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mission_summary` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `about_summary` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `backoffice_intro` */
+
+insert  into `backoffice_intro`(`id`,`title`,`secondary_title`,`intro_summary`,`mission_summary`,`about_summary`) values 
+(1,'this is some title','this is second title','this is intro summary','this is mission summary','and this is about summary');
+
+/*Table structure for table `backoffice_setup` */
+
+DROP TABLE IF EXISTS `backoffice_setup`;
+
+CREATE TABLE `backoffice_setup` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `secondary_title` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `steps_summary` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `step1_title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `step1_description` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `step2_title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `step2_description` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `step3_title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `step3_description` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `step4_title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `step4_description` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `backoffice_setup` */
+
+insert  into `backoffice_setup`(`id`,`title`,`secondary_title`,`steps_summary`,`step1_title`,`step1_description`,`step2_title`,`step2_description`,`step3_title`,`step3_description`,`step4_title`,`step4_description`) values 
+(1,'Setup Page','the purpose of this page is to create another apps','after step site instructions','this section is to enter the app code','Lorem ipsum dolor sit amet, consectetur adipiscing elit','Lorem ipsum dolor sit amet','Class aptent taciti sociosqu ad litora torquent per conubia nostra','In semper viverra turpis eget lobortis.','Suspendisse eu aliquet sapien. Mauris sed sapien orci.','Interdum et malesuada fames ac ante ipsum primis in faucibus.','sit amet lobortis leo hendrerit ut. Integer sed nibh pretium, ');
+
+/*Table structure for table `blog_comments` */
+
+DROP TABLE IF EXISTS `blog_comments`;
+
+CREATE TABLE `blog_comments` (
+  `blog_id` int NOT NULL,
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `comment` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `blog_comments` */
+
+/*Table structure for table `blogs` */
+
+DROP TABLE IF EXISTS `blogs`;
+
+CREATE TABLE `blogs` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT NULL,
+  `title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `body` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `blogs` */
+
+insert  into `blogs`(`id`,`user_id`,`title`,`body`,`created_at`,`updated_at`) values 
+(8,3,'a blog title','this is the body content','2020-07-09 19:58:00','0000-00-00 00:00:00'),
+(14,3,'Test','Test','0000-00-00 00:00:00','0000-00-00 00:00:00'),
+(24,3,'Test','Test','0000-00-00 00:00:00','0000-00-00 00:00:00'),
+(34,3,'Hello ','Test ','0000-00-00 00:00:00','0000-00-00 00:00:00'),
+(44,3,'Test ','Test ','0000-00-00 00:00:00','0000-00-00 00:00:00'),
+(54,3,',KM/NJKL/JKL;/','JKLJKLJKL;','0000-00-00 00:00:00','0000-00-00 00:00:00');
+
+/*Table structure for table `crm_calendar_users` */
+
+DROP TABLE IF EXISTS `crm_calendar_users`;
+
+CREATE TABLE `crm_calendar_users` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `invited_id` int DEFAULT NULL,
+  `events` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `calendar_owner` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `crm_calendar_users` */
+
+/*Table structure for table `crm_candidates` */
+
+DROP TABLE IF EXISTS `crm_candidates`;
+
+CREATE TABLE `crm_candidates` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pipeline_id` int DEFAULT NULL,
+  `leader_id` int DEFAULT NULL,
+  `ca1` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ca2` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ca3` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ca4` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ca5` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ca6` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ca7` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ca8` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ca9` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ca10` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=681 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `crm_candidates` */
+
+insert  into `crm_candidates`(`id`,`title`,`pipeline_id`,`leader_id`,`ca1`,`ca2`,`ca3`,`ca4`,`ca5`,`ca6`,`ca7`,`ca8`,`ca9`,`ca10`,`created_at`) values 
+(1,'test ',64,3,'qe josh','sfa','afa','qwr','qr','reter','qweqw','asdas','erte','qw','7/21/2020 01:57:58'),
+(2,'ccna certificate',65,3,'','','','','','','','','','','7/21/2020 01:59:08'),
+(11,'first candidates',71,3,'qe','qe','afa','qwr','qr','reter','qweqw','asdas','erte','trr','7/21/2020 11:25:00'),
+(21,'2ndCandidates',71,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'7/21/2020 11:26:20'),
+(31,'pipelines',71,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'7/21/2020 11:27:18'),
+(41,'4th',71,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'7/21/2020 11:27:30'),
+(51,'first',81,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'7/21/2020 11:28:12'),
+(61,'secnd',81,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'7/21/2020 11:28:18'),
+(71,'3rd',81,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'7/21/2020 11:28:25'),
+(81,'4rd phases',81,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'7/21/2020 11:28:35'),
+(91,'first candidates',31,3,'lorem ipsum','lorem ipsum','lorem ipsum','lorem ipsum','lorem ipsum','lorem ipsum','lorem ipsum','lorem ipsum','lorem ipsum','lorem ipsum','7/21/2020 11:53:00'),
+(101,'some cool candidates',101,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'7/21/2020 11:56:01'),
+(111,'John Doe',121,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'7/23/2020 10:05:29'),
+(121,'Stacy Jones',111,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'7/23/2020 10:05:48'),
+(131,'John Doe ',11,3,'Book store ','Hard worker ','Spain ','Stock boy','Yes','Sunday ','Soccer ','Mansion','Retire their parents ','Yes','7/26/2020 04:12:11'),
+(141,'John Doe',171,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'7/26/2020 04:20:55'),
+(151,'Phill',221,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'7/27/2020 10:14:02'),
+(161,'Mell',181,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'8/05/2020 00:39:13'),
+(171,'Lita',211,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'8/10/2020 11:29:19'),
+(181,'Curtis',331,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2/08/2021 03:51:50'),
+(191,'Evan Home Depot Freeport 2/26/21',271,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2/28/2021 02:52:44'),
+(201,'Mom',251,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'3/01/2021 02:15:04'),
+(211,'Dero',251,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'3/01/2021 02:15:13'),
+(231,'Raul parts machanic ',251,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'3/03/2021 06:53:27'),
+(241,'Roger machanic ',251,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'3/03/2021 06:53:36'),
+(251,'David Longfellow neighbor ',251,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'3/03/2021 06:53:48'),
+(261,'Pizza Spanish guy ',251,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'3/03/2021 06:54:05'),
+(271,'Alex',251,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'3/03/2021 06:54:14'),
+(281,'Philip',251,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'3/03/2021 06:54:24'),
+(291,'Lee',251,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'3/03/2021 06:54:29'),
+(301,'Mike & Molly',251,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'3/03/2021 06:54:45'),
+(311,'Patricia & Andre',251,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'3/03/2021 06:55:30'),
+(321,'Abigail & Brian',251,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'3/03/2021 06:55:42'),
+(331,'Nelson Longfellow ',251,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'3/17/2021 01:03:24'),
+(334,'Anna',3184,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2/12/2022 09:50:52'),
+(344,'JOSHUA',51,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'3/21/2022 00:04:40'),
+(354,'JOSH',51,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'3/21/2022 00:07:46'),
+(364,'John',51,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'3/26/2022 12:40:41'),
+(374,'Mike',3254,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'3/26/2022 12:40:50'),
+(384,'Bill',3264,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'3/26/2022 12:40:58'),
+(394,'Hassan',51,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'3/29/2022 09:18:05'),
+(404,'John',3294,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'3/29/2022 09:18:11'),
+(414,'Bill',3294,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'3/29/2022 09:18:21'),
+(424,'John',51,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'3/29/2022 10:11:17'),
+(434,'Jim',3324,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'3/29/2022 10:11:24'),
+(444,'Josh',3254,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'3/29/2022 10:11:29'),
+(454,'Josh',51,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'4/05/2022 12:53:51'),
+(464,'John',3254,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'4/05/2022 12:54:01'),
+(474,'Joe',3354,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'4/05/2022 12:54:06'),
+(484,'John ',51,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'4/05/2022 02:49:05'),
+(494,'Bill ',3384,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'4/05/2022 02:49:13'),
+(504,'Mike',3384,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'4/05/2022 02:49:19'),
+(514,'John',51,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'4/05/2022 03:08:11'),
+(534,'Steve',3414,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'4/05/2022 03:08:23'),
+(544,'John ',51,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'4/08/2022 06:32:28'),
+(554,'Bill',3414,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'4/08/2022 06:32:34'),
+(564,'June',3184,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'4/09/2022 06:19:27'),
+(574,'Smiths 123 main st ',3474,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'4/24/2022 05:43:47'),
+(584,'John Smith',3484,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'4/24/2022 05:49:22'),
+(594,'Open House Broker/Buyer',3494,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'4/24/2022 05:50:26'),
+(604,'Good offers ',3504,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'4/24/2022 05:51:25'),
+(614,'Bad offers',3504,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'4/24/2022 05:51:35'),
+(624,'Buyers',3514,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'4/24/2022 05:52:27'),
+(634,'Brian',271,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'8/27/2022 10:21:31'),
+(644,'John smith ',3194,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'8/30/2022 03:19:42'),
+(654,'John Doe ',51,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'9/02/2022 03:24:17'),
+(664,'AAA',51,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'9/12/2022 12:21:03'),
+(665,'BBB',3554,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'9/12/2022 12:21:18'),
+(666,'Omni00',3544,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'9/12/2022 12:27:25'),
+(667,'Omni00',3577,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'9/25/2022 05:55:37'),
+(668,'pndxx',3578,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'9/25/2022 05:55:58'),
+(670,'abc',3577,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'9/26/2022 10:49:13'),
+(671,'test new',3576,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'9/26/2022 01:27:00'),
+(672,'test new 2',3576,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'9/26/2022 01:27:13'),
+(673,'Josh book 2 ',3580,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'9/26/2022 06:50:16'),
+(674,'Josh 23',3584,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'9/28/2022 03:28:08'),
+(675,'Josh book 2',3586,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'9/28/2022 04:12:27'),
+(676,'Josh test 2',3581,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'9/28/2022 02:47:39'),
+(677,'Jose',241,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'10/03/2022 10:43:57'),
+(678,'John',3588,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'10/04/2022 09:01:51'),
+(679,'Jason',3586,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'10/07/2022 12:37:13'),
+(680,'Venessa ',261,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'10/08/2022 08:57:15');
+
+/*Table structure for table `crm_community_tasks` */
+
+DROP TABLE IF EXISTS `crm_community_tasks`;
+
+CREATE TABLE `crm_community_tasks` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_task_id` int DEFAULT NULL,
+  `name` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `crm_community_tasks` */
+
+insert  into `crm_community_tasks`(`id`,`user_task_id`,`name`,`description`,`date`) values 
+(6,NULL,'Show The Plan','','2022-10-06'),
+(7,NULL,'Task 2','','2022-10-06'),
+(8,NULL,'Task 3','','2022-10-06'),
+(9,NULL,'Task 4','','2022-10-06'),
+(10,NULL,'Task 5','','2022-10-06'),
+(11,NULL,'Task 6','','2022-10-06'),
+(12,NULL,'Task 7','','2022-10-06'),
+(13,NULL,'Task 8','','2022-10-06'),
+(14,NULL,'Task 9','','2022-10-06'),
+(15,NULL,'Task 10','','2022-10-06'),
+(16,NULL,'Task 11','','2022-10-06');
+
+/*Table structure for table `crm_community_users_tasks` */
+
+DROP TABLE IF EXISTS `crm_community_users_tasks`;
+
+CREATE TABLE `crm_community_users_tasks` (
+  `user_tasks_id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT NULL,
+  `task_id` int DEFAULT NULL,
+  `completed` tinyint(1) DEFAULT NULL,
+  `task_date` date DEFAULT NULL,
+  PRIMARY KEY (`user_tasks_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=733 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `crm_community_users_tasks` */
+
+insert  into `crm_community_users_tasks`(`user_tasks_id`,`user_id`,`task_id`,`completed`,`task_date`) values 
+(1,1,1,NULL,'2022-10-01'),
+(2,2,1,NULL,'2022-10-01'),
+(3,3,1,1,'2022-10-01'),
+(4,4,1,NULL,'2022-10-01'),
+(5,5,1,NULL,'2022-10-01'),
+(6,44,1,NULL,'2022-10-01'),
+(7,1,2,NULL,'2022-10-01'),
+(8,2,2,NULL,'2022-10-01'),
+(9,3,2,1,'2022-10-01'),
+(10,4,2,NULL,'2022-10-01'),
+(11,5,2,NULL,'2022-10-01'),
+(12,44,2,NULL,'2022-10-01'),
+(13,1,3,NULL,'2022-10-01'),
+(14,2,3,NULL,'2022-10-01'),
+(15,3,3,1,'2022-10-01'),
+(16,4,3,NULL,'2022-10-01'),
+(17,5,3,NULL,'2022-10-01'),
+(18,44,3,NULL,'2022-10-01'),
+(19,1,4,NULL,'2022-10-01'),
+(20,2,4,NULL,'2022-10-01'),
+(21,3,4,1,'2022-10-01'),
+(22,4,4,NULL,'2022-10-01'),
+(23,5,4,NULL,'2022-10-01'),
+(24,44,4,NULL,'2022-10-01'),
+(25,1,5,NULL,'2022-10-01'),
+(26,2,5,NULL,'2022-10-01'),
+(27,3,5,1,'2022-10-01'),
+(28,4,5,NULL,'2022-10-01'),
+(29,5,5,NULL,'2022-10-01'),
+(30,44,5,NULL,'2022-10-01'),
+(31,1,2,NULL,'2022-10-02'),
+(32,2,2,NULL,'2022-10-02'),
+(33,3,2,1,'2022-10-02'),
+(34,4,2,NULL,'2022-10-02'),
+(35,5,2,NULL,'2022-10-02'),
+(36,44,2,NULL,'2022-10-02'),
+(37,1,1,NULL,'2022-10-02'),
+(38,2,1,NULL,'2022-10-02'),
+(39,4,1,NULL,'2022-10-02'),
+(40,3,1,1,'2022-10-02'),
+(41,44,1,NULL,'2022-10-02'),
+(42,5,1,NULL,'2022-10-02'),
+(43,1,3,NULL,'2022-10-02'),
+(44,2,3,NULL,'2022-10-02'),
+(45,44,3,NULL,'2022-10-02'),
+(46,3,3,1,'2022-10-02'),
+(47,5,3,NULL,'2022-10-02'),
+(48,4,3,NULL,'2022-10-02'),
+(49,1,4,NULL,'2022-10-02'),
+(50,2,4,NULL,'2022-10-02'),
+(51,5,4,NULL,'2022-10-02'),
+(52,4,4,NULL,'2022-10-02'),
+(53,3,4,1,'2022-10-02'),
+(54,44,4,NULL,'2022-10-02'),
+(55,2,5,NULL,'2022-10-02'),
+(56,1,5,NULL,'2022-10-02'),
+(57,3,5,1,'2022-10-02'),
+(58,4,5,NULL,'2022-10-02'),
+(59,5,5,NULL,'2022-10-02'),
+(60,44,5,NULL,'2022-10-02'),
+(61,1,1,NULL,'2022-10-03'),
+(62,2,1,NULL,'2022-10-03'),
+(63,3,1,1,'2022-10-03'),
+(64,5,1,NULL,'2022-10-03'),
+(65,4,1,NULL,'2022-10-03'),
+(66,44,1,NULL,'2022-10-03'),
+(67,1,2,NULL,'2022-10-03'),
+(68,2,2,NULL,'2022-10-03'),
+(69,3,2,1,'2022-10-03'),
+(70,4,2,NULL,'2022-10-03'),
+(71,5,2,NULL,'2022-10-03'),
+(72,1,3,NULL,'2022-10-03'),
+(73,44,2,NULL,'2022-10-03'),
+(74,2,3,NULL,'2022-10-03'),
+(75,3,3,1,'2022-10-03'),
+(76,5,3,NULL,'2022-10-03'),
+(77,4,3,NULL,'2022-10-03'),
+(78,44,3,NULL,'2022-10-03'),
+(79,1,4,NULL,'2022-10-03'),
+(80,2,4,NULL,'2022-10-03'),
+(81,4,4,NULL,'2022-10-03'),
+(82,3,4,1,'2022-10-03'),
+(83,5,4,NULL,'2022-10-03'),
+(84,2,5,NULL,'2022-10-03'),
+(85,1,5,NULL,'2022-10-03'),
+(86,44,4,NULL,'2022-10-03'),
+(87,4,5,NULL,'2022-10-03'),
+(88,3,5,1,'2022-10-03'),
+(89,5,5,NULL,'2022-10-03'),
+(90,44,5,NULL,'2022-10-03'),
+(91,1,2,NULL,'2022-10-04'),
+(92,2,2,NULL,'2022-10-04'),
+(93,3,2,1,'2022-10-04'),
+(94,4,2,NULL,'2022-10-04'),
+(95,5,2,NULL,'2022-10-04'),
+(96,44,2,NULL,'2022-10-04'),
+(97,1,1,NULL,'2022-10-04'),
+(98,2,1,NULL,'2022-10-04'),
+(99,4,1,NULL,'2022-10-04'),
+(100,3,1,1,'2022-10-04'),
+(101,5,1,NULL,'2022-10-04'),
+(102,44,1,NULL,'2022-10-04'),
+(103,2,3,NULL,'2022-10-04'),
+(104,1,3,NULL,'2022-10-04'),
+(105,3,3,1,'2022-10-04'),
+(106,5,3,NULL,'2022-10-04'),
+(107,4,3,NULL,'2022-10-04'),
+(108,44,3,NULL,'2022-10-04'),
+(109,1,4,NULL,'2022-10-04'),
+(110,2,4,NULL,'2022-10-04'),
+(111,3,4,1,'2022-10-04'),
+(112,4,4,NULL,'2022-10-04'),
+(113,5,4,NULL,'2022-10-04'),
+(114,44,4,NULL,'2022-10-04'),
+(115,1,5,NULL,'2022-10-04'),
+(116,3,5,1,'2022-10-04'),
+(117,2,5,NULL,'2022-10-04'),
+(118,5,5,NULL,'2022-10-04'),
+(119,4,5,NULL,'2022-10-04'),
+(120,44,5,NULL,'2022-10-04'),
+(181,1,2,NULL,'2022-10-05'),
+(182,2,2,NULL,'2022-10-05'),
+(183,3,2,1,'2022-10-05'),
+(184,4,2,NULL,'2022-10-05'),
+(185,5,2,NULL,'2022-10-05'),
+(186,44,2,NULL,'2022-10-05'),
+(187,1,1,NULL,'2022-10-05'),
+(188,2,1,NULL,'2022-10-05'),
+(189,3,1,1,'2022-10-05'),
+(190,5,1,NULL,'2022-10-05'),
+(191,4,1,NULL,'2022-10-05'),
+(192,44,1,NULL,'2022-10-05'),
+(193,1,3,NULL,'2022-10-05'),
+(194,2,3,NULL,'2022-10-05'),
+(195,3,3,1,'2022-10-05'),
+(196,4,3,NULL,'2022-10-05'),
+(197,5,3,NULL,'2022-10-05'),
+(198,44,3,NULL,'2022-10-05'),
+(199,1,4,NULL,'2022-10-05'),
+(200,2,4,NULL,'2022-10-05'),
+(201,3,4,1,'2022-10-05'),
+(202,4,4,NULL,'2022-10-05'),
+(203,5,4,NULL,'2022-10-05'),
+(204,44,4,NULL,'2022-10-05'),
+(205,1,5,NULL,'2022-10-05'),
+(206,2,5,NULL,'2022-10-05'),
+(207,3,5,1,'2022-10-05'),
+(208,4,5,NULL,'2022-10-05'),
+(209,5,5,NULL,'2022-10-05'),
+(210,44,5,NULL,'2022-10-05'),
+(241,1,1,NULL,'2022-10-06'),
+(242,2,1,NULL,'2022-10-06'),
+(243,3,1,1,'2022-10-06'),
+(244,4,1,NULL,'2022-10-06'),
+(245,5,1,NULL,'2022-10-06'),
+(246,44,1,NULL,'2022-10-06'),
+(247,1,3,NULL,'2022-10-06'),
+(248,2,3,NULL,'2022-10-06'),
+(249,3,3,1,'2022-10-06'),
+(250,4,3,NULL,'2022-10-06'),
+(251,5,3,NULL,'2022-10-06'),
+(252,44,3,NULL,'2022-10-06'),
+(253,1,2,NULL,'2022-10-06'),
+(254,2,2,NULL,'2022-10-06'),
+(255,3,2,1,'2022-10-06'),
+(256,4,2,NULL,'2022-10-06'),
+(257,5,2,NULL,'2022-10-06'),
+(258,44,2,NULL,'2022-10-06'),
+(259,1,4,NULL,'2022-10-06'),
+(260,2,4,NULL,'2022-10-06'),
+(261,3,4,1,'2022-10-06'),
+(262,4,4,NULL,'2022-10-06'),
+(263,5,4,NULL,'2022-10-06'),
+(264,44,4,NULL,'2022-10-06'),
+(265,1,5,NULL,'2022-10-06'),
+(266,2,5,NULL,'2022-10-06'),
+(267,3,5,1,'2022-10-06'),
+(268,4,5,NULL,'2022-10-06'),
+(269,5,5,NULL,'2022-10-06'),
+(270,44,5,NULL,'2022-10-06'),
+(271,1,6,NULL,'2022-10-06'),
+(272,2,6,NULL,'2022-10-06'),
+(273,3,6,1,'2022-10-06'),
+(274,4,6,NULL,'2022-10-06'),
+(275,5,6,NULL,'2022-10-06'),
+(276,44,6,NULL,'2022-10-06'),
+(277,1,7,NULL,'2022-10-06'),
+(278,2,7,NULL,'2022-10-06'),
+(279,3,7,1,'2022-10-06'),
+(280,4,7,NULL,'2022-10-06'),
+(281,5,7,NULL,'2022-10-06'),
+(282,44,7,NULL,'2022-10-06'),
+(283,1,8,NULL,'2022-10-06'),
+(284,2,8,NULL,'2022-10-06'),
+(285,3,8,1,'2022-10-06'),
+(286,4,8,NULL,'2022-10-06'),
+(287,5,8,NULL,'2022-10-06'),
+(288,44,8,NULL,'2022-10-06'),
+(289,1,9,NULL,'2022-10-06'),
+(290,2,9,NULL,'2022-10-06'),
+(291,3,9,1,'2022-10-06'),
+(292,4,9,NULL,'2022-10-06'),
+(293,5,9,NULL,'2022-10-06'),
+(294,44,9,NULL,'2022-10-06'),
+(295,1,10,NULL,'2022-10-06'),
+(296,2,10,NULL,'2022-10-06'),
+(297,3,10,1,'2022-10-06'),
+(298,4,10,NULL,'2022-10-06'),
+(299,5,10,NULL,'2022-10-06'),
+(300,44,10,NULL,'2022-10-06'),
+(301,1,11,NULL,'2022-10-06'),
+(302,2,11,NULL,'2022-10-06'),
+(303,3,11,1,'2022-10-06'),
+(304,4,11,NULL,'2022-10-06'),
+(305,5,11,NULL,'2022-10-06'),
+(306,44,11,NULL,'2022-10-06'),
+(307,1,12,NULL,'2022-10-06'),
+(308,2,12,NULL,'2022-10-06'),
+(309,3,12,1,'2022-10-06'),
+(310,4,12,NULL,'2022-10-06'),
+(311,5,12,NULL,'2022-10-06'),
+(312,44,12,NULL,'2022-10-06'),
+(313,1,13,NULL,'2022-10-06'),
+(314,2,13,NULL,'2022-10-06'),
+(315,3,13,1,'2022-10-06'),
+(316,4,13,NULL,'2022-10-06'),
+(317,44,13,NULL,'2022-10-06'),
+(318,5,13,NULL,'2022-10-06'),
+(319,1,14,NULL,'2022-10-06'),
+(320,2,14,NULL,'2022-10-06'),
+(321,3,14,1,'2022-10-06'),
+(322,4,14,NULL,'2022-10-06'),
+(323,5,14,NULL,'2022-10-06'),
+(324,44,14,NULL,'2022-10-06'),
+(325,1,15,NULL,'2022-10-06'),
+(326,2,15,NULL,'2022-10-06'),
+(327,3,15,1,'2022-10-06'),
+(328,44,15,NULL,'2022-10-06'),
+(329,4,15,NULL,'2022-10-06'),
+(330,5,15,NULL,'2022-10-06'),
+(331,1,16,NULL,'2022-10-06'),
+(332,2,16,NULL,'2022-10-06'),
+(333,3,16,1,'2022-10-06'),
+(334,4,16,NULL,'2022-10-06'),
+(335,5,16,NULL,'2022-10-06'),
+(336,44,16,NULL,'2022-10-06'),
+(337,1,7,NULL,'2022-10-07'),
+(338,5,7,NULL,'2022-10-07'),
+(339,2,7,NULL,'2022-10-07'),
+(340,4,7,NULL,'2022-10-07'),
+(341,3,7,1,'2022-10-07'),
+(342,44,7,NULL,'2022-10-07'),
+(343,1,6,NULL,'2022-10-07'),
+(344,2,6,NULL,'2022-10-07'),
+(345,3,6,1,'2022-10-07'),
+(346,4,6,NULL,'2022-10-07'),
+(347,2,8,NULL,'2022-10-07'),
+(348,1,8,NULL,'2022-10-07'),
+(349,44,6,NULL,'2022-10-07'),
+(350,5,6,NULL,'2022-10-07'),
+(351,3,8,1,'2022-10-07'),
+(352,4,8,NULL,'2022-10-07'),
+(353,5,8,NULL,'2022-10-07'),
+(354,44,8,NULL,'2022-10-07'),
+(355,1,9,NULL,'2022-10-07'),
+(356,2,9,NULL,'2022-10-07'),
+(357,3,9,1,'2022-10-07'),
+(358,4,9,NULL,'2022-10-07'),
+(359,5,9,NULL,'2022-10-07'),
+(360,44,9,NULL,'2022-10-07'),
+(361,1,10,NULL,'2022-10-07'),
+(362,2,10,NULL,'2022-10-07'),
+(363,3,10,1,'2022-10-07'),
+(364,4,10,NULL,'2022-10-07'),
+(365,5,10,NULL,'2022-10-07'),
+(366,44,10,NULL,'2022-10-07'),
+(367,1,11,NULL,'2022-10-07'),
+(368,2,11,NULL,'2022-10-07'),
+(369,3,11,1,'2022-10-07'),
+(370,4,11,NULL,'2022-10-07'),
+(371,5,11,NULL,'2022-10-07'),
+(372,44,11,NULL,'2022-10-07'),
+(373,1,12,NULL,'2022-10-07'),
+(374,2,12,NULL,'2022-10-07'),
+(375,3,12,1,'2022-10-07'),
+(376,4,12,NULL,'2022-10-07'),
+(377,5,12,NULL,'2022-10-07'),
+(378,44,12,NULL,'2022-10-07'),
+(379,1,13,NULL,'2022-10-07'),
+(380,2,13,NULL,'2022-10-07'),
+(381,3,13,1,'2022-10-07'),
+(382,4,13,NULL,'2022-10-07'),
+(383,5,13,NULL,'2022-10-07'),
+(384,44,13,NULL,'2022-10-07'),
+(385,1,14,NULL,'2022-10-07'),
+(386,2,14,NULL,'2022-10-07'),
+(387,3,14,1,'2022-10-07'),
+(388,4,14,NULL,'2022-10-07'),
+(389,5,14,NULL,'2022-10-07'),
+(390,44,14,NULL,'2022-10-07'),
+(391,1,15,NULL,'2022-10-07'),
+(392,2,15,NULL,'2022-10-07'),
+(393,3,15,1,'2022-10-07'),
+(394,4,15,NULL,'2022-10-07'),
+(395,5,15,NULL,'2022-10-07'),
+(396,44,15,NULL,'2022-10-07'),
+(397,1,16,NULL,'2022-10-07'),
+(398,2,16,NULL,'2022-10-07'),
+(399,3,16,1,'2022-10-07'),
+(400,4,16,NULL,'2022-10-07'),
+(401,5,16,NULL,'2022-10-07'),
+(402,44,16,NULL,'2022-10-07'),
+(403,1,7,NULL,'2022-10-08'),
+(404,2,7,NULL,'2022-10-08'),
+(405,3,7,1,'2022-10-08'),
+(406,4,7,NULL,'2022-10-08'),
+(407,5,7,NULL,'2022-10-08'),
+(408,44,7,NULL,'2022-10-08'),
+(409,1,6,NULL,'2022-10-08'),
+(410,2,6,NULL,'2022-10-08'),
+(411,3,6,1,'2022-10-08'),
+(412,4,6,NULL,'2022-10-08'),
+(413,5,6,NULL,'2022-10-08'),
+(414,44,6,NULL,'2022-10-08'),
+(415,3,8,1,'2022-10-08'),
+(416,2,8,NULL,'2022-10-08'),
+(417,4,8,NULL,'2022-10-08'),
+(418,1,8,NULL,'2022-10-08'),
+(419,5,8,NULL,'2022-10-08'),
+(420,44,8,NULL,'2022-10-08'),
+(421,1,9,NULL,'2022-10-08'),
+(422,2,9,NULL,'2022-10-08'),
+(423,3,9,1,'2022-10-08'),
+(424,4,9,NULL,'2022-10-08'),
+(425,5,9,NULL,'2022-10-08'),
+(426,44,9,NULL,'2022-10-08'),
+(427,1,10,NULL,'2022-10-08'),
+(428,2,10,NULL,'2022-10-08'),
+(429,3,10,1,'2022-10-08'),
+(430,4,10,NULL,'2022-10-08'),
+(431,5,10,NULL,'2022-10-08'),
+(432,44,10,NULL,'2022-10-08'),
+(433,1,11,NULL,'2022-10-08'),
+(434,2,11,NULL,'2022-10-08'),
+(435,3,11,1,'2022-10-08'),
+(436,4,11,NULL,'2022-10-08'),
+(437,5,11,NULL,'2022-10-08'),
+(438,44,11,NULL,'2022-10-08'),
+(439,1,12,NULL,'2022-10-08'),
+(440,2,12,NULL,'2022-10-08'),
+(441,3,12,1,'2022-10-08'),
+(442,4,12,NULL,'2022-10-08'),
+(443,5,12,NULL,'2022-10-08'),
+(444,44,12,NULL,'2022-10-08'),
+(445,1,13,NULL,'2022-10-08'),
+(446,2,13,NULL,'2022-10-08'),
+(447,3,13,1,'2022-10-08'),
+(448,4,13,NULL,'2022-10-08'),
+(449,5,13,NULL,'2022-10-08'),
+(450,44,13,NULL,'2022-10-08'),
+(451,1,16,NULL,'2022-10-08'),
+(452,2,16,NULL,'2022-10-08'),
+(453,3,16,1,'2022-10-08'),
+(454,4,16,NULL,'2022-10-08'),
+(455,5,16,NULL,'2022-10-08'),
+(456,44,16,NULL,'2022-10-08'),
+(457,1,14,NULL,'2022-10-08'),
+(458,2,14,NULL,'2022-10-08'),
+(459,3,14,1,'2022-10-08'),
+(460,4,14,NULL,'2022-10-08'),
+(461,5,14,NULL,'2022-10-08'),
+(462,44,14,NULL,'2022-10-08'),
+(463,1,15,NULL,'2022-10-08'),
+(464,2,15,NULL,'2022-10-08'),
+(465,3,15,1,'2022-10-08'),
+(466,4,15,NULL,'2022-10-08'),
+(467,5,15,NULL,'2022-10-08'),
+(468,44,15,NULL,'2022-10-08'),
+(469,1,6,NULL,'2022-10-09'),
+(470,2,6,NULL,'2022-10-09'),
+(471,3,6,1,'2022-10-09'),
+(472,4,6,NULL,'2022-10-09'),
+(473,5,6,NULL,'2022-10-09'),
+(474,44,6,NULL,'2022-10-09'),
+(475,1,8,NULL,'2022-10-09'),
+(476,2,8,NULL,'2022-10-09'),
+(477,3,8,1,'2022-10-09'),
+(478,4,8,NULL,'2022-10-09'),
+(479,5,8,NULL,'2022-10-09'),
+(480,44,8,NULL,'2022-10-09'),
+(481,1,7,NULL,'2022-10-09'),
+(482,2,7,NULL,'2022-10-09'),
+(483,3,7,1,'2022-10-09'),
+(484,4,7,NULL,'2022-10-09'),
+(485,5,7,NULL,'2022-10-09'),
+(486,44,7,NULL,'2022-10-09'),
+(487,1,9,NULL,'2022-10-09'),
+(488,2,9,NULL,'2022-10-09'),
+(489,3,9,1,'2022-10-09'),
+(490,4,9,NULL,'2022-10-09'),
+(491,5,9,NULL,'2022-10-09'),
+(492,44,9,NULL,'2022-10-09'),
+(493,1,10,NULL,'2022-10-09'),
+(494,2,10,NULL,'2022-10-09'),
+(495,3,10,1,'2022-10-09'),
+(496,4,10,NULL,'2022-10-09'),
+(497,5,10,NULL,'2022-10-09'),
+(498,44,10,NULL,'2022-10-09'),
+(499,1,11,NULL,'2022-10-09'),
+(500,2,11,NULL,'2022-10-09'),
+(501,3,11,1,'2022-10-09'),
+(502,4,11,NULL,'2022-10-09'),
+(503,5,11,NULL,'2022-10-09'),
+(504,44,11,NULL,'2022-10-09'),
+(505,1,12,NULL,'2022-10-09'),
+(506,2,12,NULL,'2022-10-09'),
+(507,3,12,1,'2022-10-09'),
+(508,4,12,NULL,'2022-10-09'),
+(509,5,12,NULL,'2022-10-09'),
+(510,44,12,NULL,'2022-10-09'),
+(511,1,13,NULL,'2022-10-09'),
+(512,2,13,NULL,'2022-10-09'),
+(513,3,13,1,'2022-10-09'),
+(514,4,13,NULL,'2022-10-09'),
+(515,5,13,NULL,'2022-10-09'),
+(516,44,13,NULL,'2022-10-09'),
+(517,1,14,NULL,'2022-10-09'),
+(518,2,14,NULL,'2022-10-09'),
+(519,3,14,1,'2022-10-09'),
+(520,4,14,NULL,'2022-10-09'),
+(521,5,14,NULL,'2022-10-09'),
+(522,44,14,NULL,'2022-10-09'),
+(523,1,15,NULL,'2022-10-09'),
+(524,2,15,NULL,'2022-10-09'),
+(525,3,15,1,'2022-10-09'),
+(526,4,15,NULL,'2022-10-09'),
+(527,5,15,NULL,'2022-10-09'),
+(528,44,15,NULL,'2022-10-09'),
+(529,1,16,NULL,'2022-10-09'),
+(530,2,16,NULL,'2022-10-09'),
+(531,3,16,1,'2022-10-09'),
+(532,4,16,NULL,'2022-10-09'),
+(533,5,16,NULL,'2022-10-09'),
+(534,44,16,NULL,'2022-10-09'),
+(535,1,7,NULL,'2022-10-10'),
+(536,2,7,NULL,'2022-10-10'),
+(537,3,7,1,'2022-10-10'),
+(538,4,7,NULL,'2022-10-10'),
+(539,5,7,NULL,'2022-10-10'),
+(540,44,7,NULL,'2022-10-10'),
+(541,1,6,NULL,'2022-10-10'),
+(542,2,6,NULL,'2022-10-10'),
+(543,3,6,1,'2022-10-10'),
+(544,4,6,NULL,'2022-10-10'),
+(545,5,6,NULL,'2022-10-10'),
+(546,44,6,NULL,'2022-10-10'),
+(547,1,8,NULL,'2022-10-10'),
+(548,2,8,NULL,'2022-10-10'),
+(549,3,8,1,'2022-10-10'),
+(550,4,8,NULL,'2022-10-10'),
+(551,5,8,NULL,'2022-10-10'),
+(552,44,8,NULL,'2022-10-10'),
+(553,1,9,NULL,'2022-10-10'),
+(554,2,9,NULL,'2022-10-10'),
+(555,3,9,1,'2022-10-10'),
+(556,4,9,NULL,'2022-10-10'),
+(557,5,9,NULL,'2022-10-10'),
+(558,44,9,NULL,'2022-10-10'),
+(559,1,10,NULL,'2022-10-10'),
+(560,2,10,NULL,'2022-10-10'),
+(561,3,10,1,'2022-10-10'),
+(562,4,10,NULL,'2022-10-10'),
+(563,5,10,NULL,'2022-10-10'),
+(564,44,10,NULL,'2022-10-10'),
+(565,1,11,NULL,'2022-10-10'),
+(566,2,11,NULL,'2022-10-10'),
+(567,3,11,1,'2022-10-10'),
+(568,4,11,NULL,'2022-10-10'),
+(569,5,11,NULL,'2022-10-10'),
+(570,44,11,NULL,'2022-10-10'),
+(571,1,12,NULL,'2022-10-10'),
+(572,2,12,NULL,'2022-10-10'),
+(573,3,12,1,'2022-10-10'),
+(574,4,12,NULL,'2022-10-10'),
+(575,5,12,NULL,'2022-10-10'),
+(576,44,12,NULL,'2022-10-10'),
+(577,1,13,NULL,'2022-10-10'),
+(578,2,13,NULL,'2022-10-10'),
+(579,3,13,1,'2022-10-10'),
+(580,4,13,NULL,'2022-10-10'),
+(581,5,13,NULL,'2022-10-10'),
+(582,44,13,NULL,'2022-10-10'),
+(583,1,15,NULL,'2022-10-10'),
+(584,2,15,NULL,'2022-10-10'),
+(585,3,15,1,'2022-10-10'),
+(586,4,15,NULL,'2022-10-10'),
+(587,5,15,NULL,'2022-10-10'),
+(588,44,15,NULL,'2022-10-10'),
+(589,1,16,NULL,'2022-10-10'),
+(590,2,16,NULL,'2022-10-10'),
+(591,3,16,1,'2022-10-10'),
+(592,4,16,NULL,'2022-10-10'),
+(593,5,16,NULL,'2022-10-10'),
+(594,44,16,NULL,'2022-10-10'),
+(595,1,14,NULL,'2022-10-10'),
+(596,2,14,NULL,'2022-10-10'),
+(597,3,14,1,'2022-10-10'),
+(598,4,14,NULL,'2022-10-10'),
+(599,5,14,NULL,'2022-10-10'),
+(600,44,14,NULL,'2022-10-10'),
+(601,1,7,NULL,'2022-10-11'),
+(602,3,7,1,'2022-10-11'),
+(603,4,7,NULL,'2022-10-11'),
+(604,2,7,NULL,'2022-10-11'),
+(605,44,7,NULL,'2022-10-11'),
+(606,1,6,NULL,'2022-10-11'),
+(607,5,7,NULL,'2022-10-11'),
+(608,2,6,NULL,'2022-10-11'),
+(609,3,6,1,'2022-10-11'),
+(610,4,6,NULL,'2022-10-11'),
+(611,5,6,NULL,'2022-10-11'),
+(612,44,6,NULL,'2022-10-11'),
+(613,1,8,NULL,'2022-10-11'),
+(614,2,8,NULL,'2022-10-11'),
+(615,3,8,1,'2022-10-11'),
+(616,4,8,NULL,'2022-10-11'),
+(617,5,8,NULL,'2022-10-11'),
+(618,44,8,NULL,'2022-10-11'),
+(619,1,9,NULL,'2022-10-11'),
+(620,2,9,NULL,'2022-10-11'),
+(621,3,9,1,'2022-10-11'),
+(622,4,9,NULL,'2022-10-11'),
+(623,5,9,NULL,'2022-10-11'),
+(624,44,9,NULL,'2022-10-11'),
+(625,1,10,NULL,'2022-10-11'),
+(626,2,10,NULL,'2022-10-11'),
+(627,3,10,1,'2022-10-11'),
+(628,4,10,NULL,'2022-10-11'),
+(629,5,10,NULL,'2022-10-11'),
+(630,44,10,NULL,'2022-10-11'),
+(631,1,11,NULL,'2022-10-11'),
+(632,2,11,NULL,'2022-10-11'),
+(633,3,11,1,'2022-10-11'),
+(634,4,11,NULL,'2022-10-11'),
+(635,5,11,NULL,'2022-10-11'),
+(636,44,11,NULL,'2022-10-11'),
+(637,1,12,NULL,'2022-10-11'),
+(638,2,12,NULL,'2022-10-11'),
+(639,3,12,1,'2022-10-11'),
+(640,4,12,NULL,'2022-10-11'),
+(641,5,12,NULL,'2022-10-11'),
+(642,44,12,NULL,'2022-10-11'),
+(643,1,13,NULL,'2022-10-11'),
+(644,2,13,NULL,'2022-10-11'),
+(645,3,13,1,'2022-10-11'),
+(646,4,13,NULL,'2022-10-11'),
+(647,5,13,NULL,'2022-10-11'),
+(648,44,13,NULL,'2022-10-11'),
+(649,1,14,NULL,'2022-10-11'),
+(650,2,14,NULL,'2022-10-11'),
+(651,3,14,1,'2022-10-11'),
+(652,4,14,NULL,'2022-10-11'),
+(653,5,14,NULL,'2022-10-11'),
+(654,44,14,NULL,'2022-10-11'),
+(655,1,15,NULL,'2022-10-11'),
+(656,2,15,NULL,'2022-10-11'),
+(657,3,15,1,'2022-10-11'),
+(658,4,15,NULL,'2022-10-11'),
+(659,5,15,NULL,'2022-10-11'),
+(660,44,15,NULL,'2022-10-11'),
+(661,1,16,NULL,'2022-10-11'),
+(662,2,16,NULL,'2022-10-11'),
+(663,3,16,1,'2022-10-11'),
+(664,4,16,NULL,'2022-10-11'),
+(665,5,16,NULL,'2022-10-11'),
+(666,44,16,NULL,'2022-10-11'),
+(667,5,7,NULL,'2022-10-12'),
+(668,44,7,NULL,'2022-10-12'),
+(669,4,7,NULL,'2022-10-12'),
+(670,2,7,NULL,'2022-10-12'),
+(671,3,7,NULL,'2022-10-12'),
+(672,1,7,NULL,'2022-10-12'),
+(673,3,6,NULL,'2022-10-12'),
+(674,2,6,NULL,'2022-10-12'),
+(675,1,6,NULL,'2022-10-12'),
+(676,4,6,NULL,'2022-10-12'),
+(677,5,6,NULL,'2022-10-12'),
+(678,44,6,NULL,'2022-10-12'),
+(679,1,8,NULL,'2022-10-12'),
+(680,2,8,NULL,'2022-10-12'),
+(681,3,8,NULL,'2022-10-12'),
+(682,4,8,NULL,'2022-10-12'),
+(683,5,8,NULL,'2022-10-12'),
+(684,44,8,NULL,'2022-10-12'),
+(685,1,9,NULL,'2022-10-12'),
+(686,2,9,NULL,'2022-10-12'),
+(687,3,9,NULL,'2022-10-12'),
+(688,4,9,NULL,'2022-10-12'),
+(689,5,9,NULL,'2022-10-12'),
+(690,44,9,NULL,'2022-10-12'),
+(691,1,10,NULL,'2022-10-12'),
+(692,2,10,NULL,'2022-10-12'),
+(693,3,10,NULL,'2022-10-12'),
+(694,4,10,NULL,'2022-10-12'),
+(695,5,10,NULL,'2022-10-12'),
+(696,44,10,NULL,'2022-10-12'),
+(697,1,11,NULL,'2022-10-12'),
+(698,2,11,NULL,'2022-10-12'),
+(699,3,11,NULL,'2022-10-12'),
+(700,4,11,NULL,'2022-10-12'),
+(701,5,11,NULL,'2022-10-12'),
+(702,44,11,NULL,'2022-10-12'),
+(703,1,12,NULL,'2022-10-12'),
+(704,2,12,NULL,'2022-10-12'),
+(705,3,12,NULL,'2022-10-12'),
+(706,4,12,NULL,'2022-10-12'),
+(707,5,12,NULL,'2022-10-12'),
+(708,44,12,NULL,'2022-10-12'),
+(709,1,13,NULL,'2022-10-12'),
+(710,2,13,NULL,'2022-10-12'),
+(711,3,13,NULL,'2022-10-12'),
+(712,4,13,NULL,'2022-10-12'),
+(713,5,13,NULL,'2022-10-12'),
+(714,44,13,NULL,'2022-10-12'),
+(715,1,14,NULL,'2022-10-12'),
+(716,2,14,NULL,'2022-10-12'),
+(717,3,14,NULL,'2022-10-12'),
+(718,4,14,NULL,'2022-10-12'),
+(719,5,14,NULL,'2022-10-12'),
+(720,44,14,NULL,'2022-10-12'),
+(721,1,15,NULL,'2022-10-12'),
+(722,2,15,NULL,'2022-10-12'),
+(723,3,15,NULL,'2022-10-12'),
+(724,4,15,NULL,'2022-10-12'),
+(725,5,15,NULL,'2022-10-12'),
+(726,44,15,NULL,'2022-10-12'),
+(727,1,16,NULL,'2022-10-12'),
+(728,2,16,NULL,'2022-10-12'),
+(729,3,16,NULL,'2022-10-12'),
+(730,4,16,NULL,'2022-10-12'),
+(731,5,16,NULL,'2022-10-12'),
+(732,44,16,NULL,'2022-10-12');
+
+/*Table structure for table `crm_contacts` */
+
+DROP TABLE IF EXISTS `crm_contacts`;
+
+CREATE TABLE `crm_contacts` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(75) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address_street` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address_city` char(18) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address_state` varchar(75) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address_zip` char(18) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address_country` char(18) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `website` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `birthday` varchar(75) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `background_info` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `priority` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `crm_contacts` */
+
+insert  into `crm_contacts`(`id`,`user_id`,`name`,`email`,`phone`,`company_name`,`company_title`,`address_street`,`address_city`,`address_state`,`address_zip`,`address_country`,`website`,`birthday`,`background_info`,`status`,`priority`) values 
+(4,3,'John','','','','','','','','','','','','','Active','Low Priority');
+
+/*Table structure for table `crm_events` */
+
+DROP TABLE IF EXISTS `crm_events`;
+
+CREATE TABLE `crm_events` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT NULL,
+  `title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `start_time` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `end_time` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `crm_events` */
+
+/*Table structure for table `crm_inbox` */
+
+DROP TABLE IF EXISTS `crm_inbox`;
+
+CREATE TABLE `crm_inbox` (
+  `sender_id` int DEFAULT NULL,
+  `receiver_id` int DEFAULT NULL,
+  `subject` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `message` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `message_id` int NOT NULL AUTO_INCREMENT,
+  `attachment` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`message_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `crm_inbox` */
+
+insert  into `crm_inbox`(`sender_id`,`receiver_id`,`subject`,`message`,`message_id`,`attachment`) values 
+(3,3,'Test','Test',16,'913151E9-6EA6-41CB-93A0-7CBEDCB34BCD.jpeg');
+
+/*Table structure for table `crm_org` */
+
+DROP TABLE IF EXISTS `crm_org`;
+
+CREATE TABLE `crm_org` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `crm_org` */
+
+insert  into `crm_org`(`id`,`name`) values 
+(3,'Kyle '),
+(11,'Jay/Veni '),
+(21,'YinYing Zhao'),
+(31,'Carla'),
+(41,'John '),
+(51,'Mom');
+
+/*Table structure for table `crm_pipelines` */
+
+DROP TABLE IF EXISTS `crm_pipelines`;
+
+CREATE TABLE `crm_pipelines` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `project_id` int DEFAULT NULL,
+  `title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3590 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `crm_pipelines` */
+
+insert  into `crm_pipelines`(`id`,`project_id`,`title`) values 
+(3,3,'the logock'),
+(11,1,'Step 1'),
+(31,1,'pipelines'),
+(41,1,'Test'),
+(51,1,'Step 2'),
+(61,1,'ccna certificate'),
+(62,1,'test '),
+(231,161,'Contacts '),
+(241,161,'Touches'),
+(251,161,'Pre Process'),
+(261,161,'Meet & Greet 1'),
+(271,161,'Meet & Greet 2'),
+(281,161,'Show The Plan 1'),
+(291,161,'Follow Up 1 '),
+(311,161,'Show The Plan 2'),
+(321,161,'Follow Up 2'),
+(331,161,'Show The Plan 3'),
+(341,161,'Follow Up 3'),
+(351,161,'Offer?'),
+(361,161,'Launch'),
+(371,161,'Game Plan To Success'),
+(381,161,'Teaching Session 1'),
+(391,161,'Budget Session'),
+(401,161,'Teaching Session 2'),
+(411,161,'30 Day Core Run'),
+(421,161,'60 Day Core Run'),
+(431,161,'90 Day Core Run'),
+(441,161,'Phase I '),
+(451,161,'Phase II'),
+(461,161,'Phase III'),
+(471,161,'Phase IV'),
+(481,161,'Phase V'),
+(621,161,'Phase VI+'),
+(631,161,'1DM w/ napkin plan/day 2 STP/week IBO'),
+(661,161,'Eagle'),
+(671,161,'Double Eagle IBO'),
+(681,161,'20+ Bonus Checks IBO'),
+(691,161,'Single IBOs'),
+(701,161,'Married IBOs'),
+(711,161,'Single Prosumer w/o kids  '),
+(731,161,'Single Prosumer w/kids '),
+(741,161,'Married Prosumer w/o kids '),
+(751,161,' Married Prosumer w/kids '),
+(761,161,'Single Ditto Prosumers  '),
+(771,161,' Married Ditto Prosumers '),
+(781,161,'Single Ditto Client w/o kids '),
+(791,161,'Married Ditto Clients w/kids '),
+(801,161,'Single Customers w/o kids '),
+(811,161,'Married Customers w/kids '),
+(821,161,'Left Over People (Single Family Member w/o kids)'),
+(831,161,' Left Over People (Single Family Member w/kids)'),
+(841,161,'  Left Over People (Married Family Member w/o kids'),
+(851,161,'  Left Over People (Married Family Member w/kids) '),
+(861,161,'  Left Over People (Divorce Family Member w/o kids'),
+(871,161,' Left Over People (Divorce Family Member w/kids) '),
+(891,161,'Left Over People (Single Friends w/o kids) '),
+(901,161,' Left Over People (Single Friends w/kids) '),
+(911,161,' Left Over People (Married Friends w/o kids) '),
+(921,161,' Left Over People (Married Friends w/kids) '),
+(931,161,' Left Over People (Divorced Friends w/o kids) '),
+(941,161,' Left Over People (Divorced Friends w/kids)'),
+(951,161,'Left Over People (Single Associates w/o kids) '),
+(961,161,'  Left Over People (Single Associates w/kids) '),
+(971,161,' Left Over People (Married Associates w/o kids) '),
+(981,161,' Left Over People (Married Associates w/kids) '),
+(991,161,' Left Over People (Divorced Associates w/o kids) '),
+(1001,161,' Left Over People (Divorced Associates w/kids)  '),
+(1011,161,'Left Over People (Single Neighbor w/o kids) '),
+(1021,161,' Left Over People (Single Neighbor w/kids) '),
+(1031,161,' Left Over People (Married Neighbor w/o kids) '),
+(1041,161,'Left Over People (Married Neighbor w/kids) '),
+(1051,161,' Left Over People (Divorce Neighbor w/o kids) '),
+(1061,161,' Left Over People (Divorced  Neighbor w/kids) '),
+(1101,161,' Left Over People (Single Business Owner w/o kids)'),
+(1111,161,' Left Over People (Single Business Owner w/kids) '),
+(1131,161,'Left Over People (Married Business Owner w/o kids)'),
+(1141,161,'Left Over People (Married Business Owner w/kids)'),
+(1151,161,'Left Over People (Divorce Business Owner w/o kids)'),
+(1161,161,'Left Over People (Divorced Business Owner w/kids)'),
+(1171,161,'Left Over People (Single Strangers w/o kids)'),
+(1181,161,'Left Over People (Single Strangers w/kids)'),
+(1191,161,'Left Over People (Married Strangers w/o kids)'),
+(1201,161,'Left Over People (Single Strangers w/kids)'),
+(1211,161,'Left Over People (Divorced Strangers w/o kids)'),
+(1221,161,'Left Over People (Divorced Strangers w/kids)'),
+(1231,161,'Master Name List'),
+(1241,161,'Single Family Member w/o kids'),
+(1281,161,'Single Family Member w/kids'),
+(1291,161,'Married Family Member w/o kids'),
+(1301,161,'Married Family Member w/kids'),
+(1311,161,'Divorced Family Member w/o kids'),
+(1321,161,'Divorced Family Member w/kids'),
+(1331,161,'Single Friends w/o kids'),
+(1341,161,'Single Friends w/kids'),
+(1351,161,'Married Friends w/o kids'),
+(1361,161,'Married Friends w/kids'),
+(1401,161,'Divorce Friends w/o kids'),
+(1411,161,'Divorce Friends w/kids'),
+(1421,161,'Single Associates w/o kids'),
+(1431,161,'Single Associates w/kids'),
+(1441,161,'Married Associates w/o kids'),
+(1451,161,'Married Associates w/kids'),
+(1461,161,'Divorced Associates w/o kids'),
+(1471,161,'Divorced Associates w/kids'),
+(1481,161,'Single Neighbor w/o kids'),
+(1491,161,'Single Neighbor w/kids'),
+(1501,161,'Married Neighbor w/o kids'),
+(1511,161,'Married Neighbor w/kids'),
+(1521,161,'Divorced Neighbor w/o kids'),
+(1531,161,'Divorced Neighbor w/kids'),
+(1541,161,'Single Business Owner w/o kids'),
+(1551,161,'Single Business Owner w/kids'),
+(1561,161,'Married Business Owner w/o kids'),
+(1571,161,'Married Business Owner w/kids'),
+(1581,161,'Divorced Business Owner w/o kids'),
+(1591,161,'Divorced Business Owner w/kids'),
+(1611,161,'Single Strangers w/o kids'),
+(1621,161,'Single Strangers w/kids'),
+(1631,161,'Married Strangers w/o kids'),
+(1641,161,'Married Strangers w/kids'),
+(1651,161,'Divorced Strangers w/o kids'),
+(1661,161,'Divorced Strangers w/kids'),
+(1671,161,'Real Estate People'),
+(1681,161,'College People'),
+(1691,161,'Church People'),
+(1701,161,'Employee'),
+(1711,161,'Career People'),
+(1721,161,'Millionaires '),
+(1731,161,'Self Employed'),
+(1741,161,'Small Business Owner'),
+(1751,161,'Multimillionaire'),
+(1761,161,'Investor Big Business Owner'),
+(1771,161,'Blue Collar Worker'),
+(1781,161,'White Collar Worker'),
+(1791,161,'Industry'),
+(1801,161,'Medical Industry '),
+(1821,161,'Real Estate Industry'),
+(1831,161,'Financial Industry'),
+(1841,161,'Tech Industry'),
+(1851,161,'Political Industry'),
+(1861,161,'Farm'),
+(1871,161,'Media'),
+(1881,161,'Talent'),
+(1891,161,'Creative '),
+(1901,161,'Legal '),
+(1911,161,'Business'),
+(1921,161,'Referral'),
+(1931,161,'Retail Referral '),
+(1941,161,'Sample Program'),
+(1951,161,'Raffle Winner'),
+(1961,161,'Top 1000 IBOs'),
+(1971,161,'Top 100 IBOs'),
+(1981,161,'Top 46 IBOs'),
+(1991,161,'Top 30 IBOs'),
+(2001,161,'Top 20 IBOs'),
+(2011,161,'Top 12 IBOs'),
+(2021,161,'Top 9 IBOs'),
+(2031,161,'Top 6 IBOs'),
+(2041,161,'Top 3 IBOs'),
+(2051,161,'Top 1 IBO'),
+(2061,161,'Product Approach People'),
+(2071,161,'Top 100,000 People'),
+(2081,161,'Top 10,000 People'),
+(2091,161,'Top 1000 People'),
+(2101,161,'Top 100 People'),
+(2111,161,'Top 46 People'),
+(2121,161,'Top 30 People'),
+(2131,161,'Top 20 People'),
+(2141,161,'Top 12 People'),
+(2151,161,'Top 9 People'),
+(2161,161,'Top 6 People'),
+(2171,161,'Top 6 People'),
+(2181,161,'Top 3 People'),
+(2191,161,'Top 1 Person'),
+(2201,161,'Who is your next best family member.'),
+(2211,161,'Who is your next best friend.'),
+(2221,161,'Who is your next best associate.'),
+(2231,161,'Who is your next best neighbor.'),
+(2241,161,'Who is your next best business owner.'),
+(2251,161,'Who is your next best stranger.'),
+(2261,161,'Who is your next best single person w/o kids.'),
+(2271,161,'Who is your next best single person w/kids.'),
+(2281,161,'Who is your next best married person w/o kids.'),
+(2291,161,'Who is your next best married person w/kids.'),
+(2301,161,'Single Guy'),
+(2311,161,'People who are dating  '),
+(2321,161,'Single girls '),
+(2331,161,'Pretty girls (Artistry)'),
+(2341,161,'Career minded girls '),
+(2351,161,'Health Minded '),
+(2361,161,'Home Makers'),
+(2371,161,'Local'),
+(2381,161,'Regional '),
+(2391,161,'Near By States '),
+(2401,161,'District '),
+(2411,161,'Costal '),
+(2421,161,'National '),
+(2431,161,'Country '),
+(2441,161,'Continental '),
+(2461,161,'Hemisphere '),
+(2471,161,'International '),
+(2481,161,'Inter Planetary '),
+(2491,161,'Black '),
+(2501,161,'White '),
+(2511,161,'Asian '),
+(2521,161,'Spanish '),
+(2531,161,'Indian '),
+(2541,161,'Culture  '),
+(2551,161,'Language  '),
+(2561,161,'Religion '),
+(2571,161,'Back Ground '),
+(2581,161,'Good at'),
+(2591,161,'Infant '),
+(2601,161,'Toddlers '),
+(2611,161,'Kids'),
+(2621,161,'Young kids'),
+(2631,161,'Teens'),
+(2641,161,'Pre teen '),
+(2651,161,'Mid teen'),
+(2661,161,'Late teens'),
+(2671,161,'Young adult '),
+(2681,161,'Middle age '),
+(2691,161,'Old '),
+(2701,161,'Older'),
+(2711,161,'Mature'),
+(2721,161,'Elderly  '),
+(2731,161,'Ancient'),
+(2761,161,'Obesity '),
+(2771,161,'Over weight '),
+(2781,161,'Fat '),
+(2791,161,'Average '),
+(2801,161,'Skinny '),
+(2811,161,'Malnourish '),
+(2821,161,'White Girl '),
+(2831,161,'Asian Girl '),
+(2841,161,'Spanish Girl '),
+(2851,161,'Indian Girl'),
+(2861,161,'Growing Dreamer '),
+(2871,161,'Strong Work Ethic '),
+(2881,161,'People who love people '),
+(2891,161,'Good People '),
+(2901,161,'Average People '),
+(2911,161,'Secular People'),
+(2921,161,'Exceptional People '),
+(2931,161,'Religious People '),
+(2941,161,'Spiritual People '),
+(2951,161,'Godly people '),
+(2961,161,'Gods person'),
+(2971,161,'Who you believe in. '),
+(2981,161,'Not Business Minded'),
+(2991,161,'Hot excited  '),
+(3011,161,'Lukewarm on the fence  '),
+(3021,161,'Cold don’t care '),
+(3031,161,'Who do I like/believe in'),
+(3041,161,'*Business Minded '),
+(3051,161,'***Self Motivated '),
+(3061,161,'***Self Starter  '),
+(3071,161,'****Big Dreamers '),
+(3081,161,'*****Who Is Looking'),
+(3091,161,'******Who really wants it '),
+(3101,161,'*******Who is your next best person overall '),
+(3121,161,'Personal Yearly CORE RUN'),
+(3131,161,'Personal Quarterly  CORE RUN'),
+(3141,161,'Personal Monthly CORE RUN'),
+(3151,161,'Personal Weekly CORE RUN'),
+(3161,161,'Personal Daily CORE RUN'),
+(3171,161,'Personal Hourly CORE RUN'),
+(3174,114,'Process'),
+(3184,114,'MG1'),
+(3194,114,'Mg2'),
+(3204,114,'Follow up 1'),
+(3214,164,'STEP 1 '),
+(3244,164,'STEP 2'),
+(3254,164,'STEP 3'),
+(3264,174,'Step 1 '),
+(3274,174,'Step 2'),
+(3284,174,'Step 3'),
+(3294,184,'Step 1'),
+(3304,184,'Step 2'),
+(3314,184,'Step 3'),
+(3324,194,'Step 1 '),
+(3334,194,'Step 2'),
+(3344,194,'Step 3'),
+(3354,204,'Step 1 '),
+(3364,204,'Step 2'),
+(3374,204,'Step 3'),
+(3384,214,'Step 1 '),
+(3394,214,'Step 2'),
+(3404,214,'Step 3'),
+(3414,224,'Step 1 '),
+(3424,224,'Step 2'),
+(3434,224,'Step 3'),
+(3444,234,'Pre process'),
+(3454,234,'MG1'),
+(3464,234,'MG2'),
+(3474,244,'Contract buyer agency '),
+(3484,254,'Listing agreements '),
+(3494,254,'Marketing'),
+(3504,254,'Offers'),
+(3514,254,'Under Contract '),
+(3524,254,'Closing '),
+(3534,114,'Follow up 2'),
+(3544,274,'Step 1'),
+(3554,274,'Step 2'),
+(3564,274,'Step 3'),
+(3574,274,'New'),
+(3575,113,'ABC'),
+(3576,286,'pipeline 1'),
+(3577,286,'Pipeline 2'),
+(3578,287,'Pipeline 1'),
+(3579,287,'Pipeline 2'),
+(3580,288,'Chapter 1'),
+(3581,288,'Chapter 2'),
+(3582,288,'Chapter 3'),
+(3583,289,'Chapter 1'),
+(3584,289,'Chapter 2'),
+(3586,289,'Chapter 3');
+
+/*Table structure for table `crm_posts` */
+
+DROP TABLE IF EXISTS `crm_posts`;
+
+CREATE TABLE `crm_posts` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `pipeline_id` int DEFAULT NULL,
+  `user_id` int DEFAULT NULL,
+  `post` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `candidate_id` int DEFAULT NULL,
+  `date_time` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=159 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `crm_posts` */
+
+insert  into `crm_posts`(`id`,`pipeline_id`,`user_id`,`post`,`candidate_id`,`date_time`) values 
+(1,NULL,3,'some important notes fa',667,'0000-00-00'),
+(11,NULL,3,'some important notes',667,'0000-00-00'),
+(21,NULL,3,'4rd posts ',667,'0000-00-00'),
+(31,NULL,3,'some important notes fa',667,'0000-00-00'),
+(41,NULL,3,'This is a test ',667,'0000-00-00'),
+(51,NULL,3,'This is a test',667,'0000-00-00'),
+(61,NULL,3,'Test',667,'0000-00-00'),
+(71,NULL,3,'Need to call him when you are on the block.',667,'0000-00-00'),
+(74,NULL,3,'Do your job',667,'0000-00-00'),
+(84,NULL,3,'Hello',667,'0000-00-00'),
+(94,NULL,3,'This is good',667,'0000-00-00'),
+(104,NULL,3,'Contacts ',667,'0000-00-00'),
+(114,NULL,3,'Broker open ',667,'0000-00-00'),
+(124,NULL,3,'He was good interview',667,'0000-00-00'),
+(134,NULL,3,'Help ',667,'0000-00-00'),
+(144,NULL,3,'This is good ',667,'0000-00-00'),
+(154,NULL,3,'aaa',670,'2022-09-26'),
+(155,NULL,3,'nnnn',670,'2022-09-26'),
+(156,NULL,3,'aaa',669,'2022-09-26'),
+(157,NULL,3,'afsafas',669,'2022-09-26'),
+(158,NULL,3,'This is going good',680,'2022-10-09');
+
+/*Table structure for table `crm_projects` */
+
+DROP TABLE IF EXISTS `crm_projects`;
+
+CREATE TABLE `crm_projects` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `leader_id` int DEFAULT NULL,
+  `title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=291 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `crm_projects` */
+
+insert  into `crm_projects`(`id`,`leader_id`,`title`) values 
+(1,3,'the yoben projects'),
+(11,3,'Test 1'),
+(21,3,'Test 1'),
+(31,3,'test 1'),
+(41,3,'pipelines'),
+(51,3,'pipelines'),
+(61,3,'pipelines'),
+(71,3,'important stuff'),
+(81,3,'Credit Repair '),
+(91,3,'Credit Repair '),
+(101,3,'Credit Repair '),
+(111,3,'2nd'),
+(112,3,'important stuff'),
+(114,3,'pipelines'),
+(115,3,'ethereum developer | tensorflow '),
+(121,3,'newProjects'),
+(131,3,'anotherNewProjects'),
+(141,3,'Debt Settlement '),
+(151,3,'Test project 7/26/2020 12:19 '),
+(161,3,'Omni/Amway'),
+(164,3,'TSC WORK FLOW'),
+(174,3,'Fix bugs on site '),
+(184,3,'Fix bugs on this app'),
+(194,3,'Fix all the bugs '),
+(204,3,'Refractor app'),
+(214,3,'New project '),
+(224,3,'Tests project '),
+(234,3,'Sponsoring '),
+(244,3,'RE Sales 123 Main Street Brooklyn, NY'),
+(254,3,'Lists'),
+(264,3,'Brian'),
+(274,3,'New project'),
+(284,3,'Homework '),
+(287,3,'New Test Task');
+
+/*Table structure for table `crm_storage` */
+
+DROP TABLE IF EXISTS `crm_storage`;
+
+CREATE TABLE `crm_storage` (
+  `storage_id` int DEFAULT NULL,
+  `owner_id` int DEFAULT NULL,
+  `first_name` varchar(75) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `crm_storage` */
+
+insert  into `crm_storage`(`storage_id`,`owner_id`,`first_name`) values 
+(1,3,'nyobi');
+
+/*Table structure for table `crm_storage_files` */
+
+DROP TABLE IF EXISTS `crm_storage_files`;
+
+CREATE TABLE `crm_storage_files` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `source_id` int DEFAULT NULL,
+  `file` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `crm_storage_files` */
+
+insert  into `crm_storage_files`(`id`,`source_id`,`file`) values 
+(1,1,'Screenshot_8.png');
+
+/*Table structure for table `crm_storage_folder_files` */
+
+DROP TABLE IF EXISTS `crm_storage_folder_files`;
+
+CREATE TABLE `crm_storage_folder_files` (
+  `source_id` int DEFAULT NULL,
+  `isLeader` tinyint(1) DEFAULT NULL,
+  `file` char(25) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+/*Data for the table `crm_storage_folder_files` */
+
+insert  into `crm_storage_folder_files`(`source_id`,`isLeader`,`file`) values 
+(1,NULL,'Screenshot_1.png'),
+(1,NULL,'Screenshot_4.png'),
+(2,NULL,'Screenshot_4.png'),
+(2,NULL,'Screenshot_2.png');
+
+/*Table structure for table `crm_storage_folders` */
+
+DROP TABLE IF EXISTS `crm_storage_folders`;
+
+CREATE TABLE `crm_storage_folders` (
+  `owner_id` int NOT NULL,
+  `folder_id` int NOT NULL AUTO_INCREMENT,
+  `storage_id` int DEFAULT NULL,
+  `title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`folder_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `crm_storage_folders` */
+
+insert  into `crm_storage_folders`(`owner_id`,`folder_id`,`storage_id`,`title`) values 
+(3,1,1,'aaa'),
+(3,2,1,'aasas'),
+(3,3,1,'Test');
+
+/*Table structure for table `crm_storage_folders_users` */
+
+DROP TABLE IF EXISTS `crm_storage_folders_users`;
+
+CREATE TABLE `crm_storage_folders_users` (
+  `user_id` int DEFAULT NULL,
+  `source_id` int DEFAULT NULL,
+  `first_name` varchar(75) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `crm_storage_folders_users` */
+
+insert  into `crm_storage_folders_users`(`user_id`,`source_id`,`first_name`) values 
+(3,1,NULL),
+(3,2,NULL),
+(3,3,NULL);
+
+/*Table structure for table `crm_storage_users_storage` */
+
+DROP TABLE IF EXISTS `crm_storage_users_storage`;
+
+CREATE TABLE `crm_storage_users_storage` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `source_id` int DEFAULT NULL,
+  `first_name` varchar(75) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `crm_storage_users_storage` */
+
+insert  into `crm_storage_users_storage`(`user_id`,`source_id`,`first_name`) values 
+(3,1,NULL),
+(44,1,NULL);
+
+/*Table structure for table `crm_tasks` */
+
+DROP TABLE IF EXISTS `crm_tasks`;
+
+CREATE TABLE `crm_tasks` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT NULL,
+  `pipeline_id` int DEFAULT NULL,
+  `title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `crm_tasks` */
+
+/*Table structure for table `crm_uploads` */
+
+DROP TABLE IF EXISTS `crm_uploads`;
+
+CREATE TABLE `crm_uploads` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `candidate_id` int DEFAULT NULL,
+  `file_name` char(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `crm_uploads` */
+
+insert  into `crm_uploads`(`id`,`candidate_id`,`file_name`) values 
+(1,3,'Screenshot_20200702-'),
+(11,3,'merryChristmasDude.j'),
+(21,91,'IMG_20190331_080107.');
+
+/*Table structure for table `crm_users` */
+
+DROP TABLE IF EXISTS `crm_users`;
+
+CREATE TABLE `crm_users` (
+  `user_id` int DEFAULT NULL,
+  `referrer_code` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `crm_users` */
+
+insert  into `crm_users`(`user_id`,`referrer_code`) values 
+(3,'H1y1nO11w'),
+(4,'SyBHpdkJP'),
+(21,'H1y1nO11w'),
+(44,'H1y1nO11w'),
+(54,'H1y1nO11w');
+
+/*Table structure for table `crm_users_cadidates` */
+
+DROP TABLE IF EXISTS `crm_users_cadidates`;
+
+CREATE TABLE `crm_users_cadidates` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `candidate_id` int DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `crm_users_cadidates` */
+
+/*Table structure for table `crm_users_candidates` */
+
+DROP TABLE IF EXISTS `crm_users_candidates`;
+
+CREATE TABLE `crm_users_candidates` (
+  `user_id` int DEFAULT NULL,
+  `candidate_id` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `crm_users_candidates` */
+
+insert  into `crm_users_candidates`(`user_id`,`candidate_id`) values 
+(3,'3'),
+(3,'4'),
+(3,'5'),
+(3,'11'),
+(3,'21'),
+(3,'22'),
+(3,'1'),
+(3,'2'),
+(3,'11'),
+(3,'21'),
+(3,'31'),
+(3,'41'),
+(3,'51'),
+(3,'61'),
+(3,'71'),
+(3,'81'),
+(3,'91'),
+(3,'101'),
+(3,'111'),
+(3,'121'),
+(3,'131'),
+(3,'141'),
+(3,'151'),
+(3,'161'),
+(3,'171'),
+(3,'181'),
+(3,'191'),
+(3,'201'),
+(3,'211'),
+(3,'231'),
+(3,'241'),
+(3,'251'),
+(3,'261'),
+(3,'271'),
+(3,'281'),
+(3,'291'),
+(3,'301'),
+(3,'311'),
+(3,'321'),
+(3,'331'),
+(3,'334'),
+(3,'344'),
+(3,'354'),
+(3,'364'),
+(3,'374'),
+(3,'384'),
+(3,'394'),
+(3,'404'),
+(3,'414'),
+(3,'424'),
+(3,'434'),
+(3,'444'),
+(3,'454'),
+(3,'464'),
+(3,'474'),
+(3,'484'),
+(3,'494'),
+(3,'504'),
+(3,'514'),
+(3,'534'),
+(3,'544'),
+(3,'554'),
+(3,'564'),
+(3,'574'),
+(3,'584'),
+(3,'594'),
+(3,'604'),
+(3,'614'),
+(3,'624'),
+(3,'634'),
+(3,'644'),
+(3,'654'),
+(3,'664'),
+(3,'665'),
+(3,'666'),
+(3,'667'),
+(3,'668'),
+(3,'670'),
+(44,'670'),
+(3,'671'),
+(3,'672'),
+(3,'673'),
+(3,'674'),
+(3,'675'),
+(3,'676'),
+(3,'677'),
+(3,'678'),
+(3,'679'),
+(3,'680');
+
+/*Table structure for table `crm_users_org` */
+
+DROP TABLE IF EXISTS `crm_users_org`;
+
+CREATE TABLE `crm_users_org` (
+  `org_id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT NULL,
+  PRIMARY KEY (`org_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `crm_users_org` */
+
+insert  into `crm_users_org`(`org_id`,`user_id`) values 
+(3,3),
+(11,3),
+(21,3),
+(31,3),
+(41,3),
+(51,3);
+
+/*Table structure for table `crm_users_projects` */
+
+DROP TABLE IF EXISTS `crm_users_projects`;
+
+CREATE TABLE `crm_users_projects` (
+  `user_id` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `project_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `crm_users_projects` */
+
+insert  into `crm_users_projects`(`user_id`,`project_id`) values 
+('3',114),
+('3',115),
+('3',121),
+('3',131),
+('3',141),
+('3',151),
+('3',161),
+('3',164),
+('3',174),
+('3',184),
+('3',194),
+('3',204),
+('3',214),
+('3',224),
+('3',234),
+('3',244),
+('3',254),
+('3',264),
+('3',274),
+('44',274),
+('44',274),
+('3',284),
+('3',287);
+
+/*Table structure for table `crm_voicemail` */
+
+DROP TABLE IF EXISTS `crm_voicemail`;
+
+CREATE TABLE `crm_voicemail` (
+  `owner_id` int NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `voicemail_id` int DEFAULT NULL,
+  PRIMARY KEY (`owner_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `crm_voicemail` */
+
+insert  into `crm_voicemail`(`owner_id`,`first_name`,`voicemail_id`) values 
+(1,'nyobi',6),
+(3,'nyobi',2),
+(4,NULL,NULL),
+(21,NULL,NULL),
+(44,NULL,NULL),
+(54,NULL,NULL);
+
+/*Table structure for table `crm_voicemail_files` */
+
+DROP TABLE IF EXISTS `crm_voicemail_files`;
+
+CREATE TABLE `crm_voicemail_files` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `source_id` int DEFAULT NULL,
+  `file` varchar(95) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date` char(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `time` char(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `crm_voicemail_files` */
+
+insert  into `crm_voicemail_files`(`id`,`source_id`,`file`,`date`,`time`) values 
+(14,2,'trim.D5E44D93-69A5-4B59-AAE6-B7E518B691BD.MOV','4/08/2022','07:25:50');
+
+/*Table structure for table `crm_voicemail_folder_files` */
+
+DROP TABLE IF EXISTS `crm_voicemail_folder_files`;
+
+CREATE TABLE `crm_voicemail_folder_files` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `file` char(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `crm_voicemail_folder_files` */
+
+/*Table structure for table `crm_voicemail_folders` */
+
+DROP TABLE IF EXISTS `crm_voicemail_folders`;
+
+CREATE TABLE `crm_voicemail_folders` (
+  `folder_id` int NOT NULL AUTO_INCREMENT,
+  `owner_id` int NOT NULL,
+  `title` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `voicemail_id` int DEFAULT NULL,
+  PRIMARY KEY (`folder_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `crm_voicemail_folders` */
+
+insert  into `crm_voicemail_folders`(`folder_id`,`owner_id`,`title`,`voicemail_id`) values 
+(1,3,'aaa',2),
+(2,3,'aaa',2),
+(3,3,'aaa',2),
+(4,3,'bbb',2),
+(5,3,'aaa',2),
+(6,3,'aaa',2),
+(7,3,'nnn',2),
+(8,3,'wew',2),
+(9,3,'test folder',2),
+(10,3,'cc',2);
+
+/*Table structure for table `crm_voicemail_folders_users` */
+
+DROP TABLE IF EXISTS `crm_voicemail_folders_users`;
+
+CREATE TABLE `crm_voicemail_folders_users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT NULL,
+  `source_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `crm_voicemail_folders_users` */
+
+insert  into `crm_voicemail_folders_users`(`id`,`user_id`,`source_id`) values 
+(4,3,3),
+(5,3,3),
+(6,3,4),
+(7,3,5),
+(8,3,6),
+(9,3,7),
+(10,3,8),
+(11,3,9),
+(12,3,10);
+
+/*Table structure for table `crm_voicemail_users` */
+
+DROP TABLE IF EXISTS `crm_voicemail_users`;
+
+CREATE TABLE `crm_voicemail_users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT NULL,
+  `source_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `crm_voicemail_users` */
+
+insert  into `crm_voicemail_users`(`id`,`user_id`,`source_id`) values 
+(12,3,1);
+
+/*Table structure for table `crm_wall_users` */
+
+DROP TABLE IF EXISTS `crm_wall_users`;
+
+CREATE TABLE `crm_wall_users` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `invited_id` int NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `crm_wall_users` */
+
+/*Table structure for table `ecrm_contacts` */
+
+DROP TABLE IF EXISTS `ecrm_contacts`;
+
+CREATE TABLE `ecrm_contacts` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT NULL,
+  `name` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` int DEFAULT NULL,
+  `company_name` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_title` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address_street` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address_city` char(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address_state` char(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address_zip` char(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address_country` char(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `website` char(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `birthday` date DEFAULT NULL,
+  `background_info` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `priority` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `ecrm_contacts` */
+
+insert  into `ecrm_contacts`(`id`,`user_id`,`name`,`email`,`phone`,`company_name`,`company_title`,`address_street`,`address_city`,`address_state`,`address_zip`,`address_country`,`website`,`birthday`,`background_info`,`status`,`priority`) values 
+(1,21,'Jose','',0,'','','','','','','','','0000-00-00','','Active',0);
+
+/*Table structure for table `ecrm_events` */
+
+DROP TABLE IF EXISTS `ecrm_events`;
+
+CREATE TABLE `ecrm_events` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT NULL,
+  `title` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `start_time` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `end_time` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `ecrm_events` */
+
+/*Table structure for table `ecrm_folders` */
+
+DROP TABLE IF EXISTS `ecrm_folders`;
+
+CREATE TABLE `ecrm_folders` (
+  `id` int DEFAULT NULL,
+  `title` char(50) DEFAULT NULL,
+  `pipeline_id` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+/*Data for the table `ecrm_folders` */
+
+insert  into `ecrm_folders`(`id`,`title`,`pipeline_id`) values 
+(NULL,'new folders',31),
+(NULL,'new folders',31),
+(NULL,'new folders',31),
+(NULL,'new folders',31),
+(NULL,'ccna certificate',31),
+(NULL,'new folders',21),
+(NULL,'new folders2',21),
+(NULL,'Agreement',11),
+(NULL,'Test',41),
+(NULL,'Test',51),
+(NULL,'Steve Hill',91),
+(NULL,'Docs',201);
+
+/*Table structure for table `ecrm_inbox` */
+
+DROP TABLE IF EXISTS `ecrm_inbox`;
+
+CREATE TABLE `ecrm_inbox` (
+  `sender_id` int NOT NULL AUTO_INCREMENT,
+  `receiver_id` int DEFAULT NULL,
+  `subject` char(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `message` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`sender_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `ecrm_inbox` */
+
+insert  into `ecrm_inbox`(`sender_id`,`receiver_id`,`subject`,`message`) values 
+(3,4,'the message','sdfsdfsd');
+
+/*Table structure for table `ecrm_org` */
+
+DROP TABLE IF EXISTS `ecrm_org`;
+
+CREATE TABLE `ecrm_org` (
+  `contact_id` int NOT NULL AUTO_INCREMENT,
+  `leader_id` int DEFAULT NULL,
+  `position` char(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`contact_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `ecrm_org` */
+
+insert  into `ecrm_org`(`contact_id`,`leader_id`,`position`) values 
+(1,21,'Owner');
+
+/*Table structure for table `ecrm_pipelines` */
+
+DROP TABLE IF EXISTS `ecrm_pipelines`;
+
+CREATE TABLE `ecrm_pipelines` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `project_id` int DEFAULT NULL,
+  `title` char(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=252 DEFAULT CHARSET=utf8mb3;
+
+/*Data for the table `ecrm_pipelines` */
+
+insert  into `ecrm_pipelines`(`id`,`project_id`,`title`) values 
+(1,1,'test'),
+(11,1,'test'),
+(21,1,'pipelines'),
+(31,1,'important stuff'),
+(41,1,'Step 111'),
+(51,31,'DS Step 1'),
+(61,31,'DS Step 2'),
+(71,31,'DS Step 3'),
+(81,41,'HR'),
+(91,51,'List of Candidate'),
+(101,51,'Interview'),
+(111,51,'Hire'),
+(121,61,'Project Ideas'),
+(131,61,'Project Blue Print'),
+(141,61,'Proof of Concept'),
+(151,61,'Project Approval'),
+(161,71,'R&D IDEAS'),
+(171,71,'R&D INDUSTRIES'),
+(181,71,'R&D BLUE PRINT'),
+(191,71,'R&D PROOF OF CONCEPT'),
+(201,81,'Step 1 tp'),
+(211,81,'Step 2'),
+(221,91,'CEO'),
+(231,91,'CFO'),
+(241,91,'COO'),
+(251,91,'PRESIDENT');
+
+/*Table structure for table `ecrm_posts` */
+
+DROP TABLE IF EXISTS `ecrm_posts`;
+
+CREATE TABLE `ecrm_posts` (
+  `pipeline_id` int DEFAULT NULL,
+  `user_id` int DEFAULT NULL,
+  `post` varchar(100) DEFAULT NULL,
+  `date_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+/*Data for the table `ecrm_posts` */
+
+insert  into `ecrm_posts`(`pipeline_id`,`user_id`,`post`,`date_time`) values 
+(91,3,'some one cool','2020-08-22 08:34:13'),
+(91,3,'another candidates','2020-08-22 08:34:28');
+
+/*Table structure for table `ecrm_projects` */
+
+DROP TABLE IF EXISTS `ecrm_projects`;
+
+CREATE TABLE `ecrm_projects` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `leader_id` int DEFAULT NULL,
+  `title` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8mb3;
+
+/*Data for the table `ecrm_projects` */
+
+insert  into `ecrm_projects`(`id`,`leader_id`,`title`) values 
+(1,3,'important stuff'),
+(11,3,'test '),
+(21,3,'pipelines'),
+(31,21,'Debt Settlement '),
+(41,3,'Omni team'),
+(51,3,'Omni HR'),
+(61,3,'Omni Marketing Dept'),
+(71,3,'R&D'),
+(81,3,'Test project '),
+(91,3,'COB');
+
+/*Table structure for table `ecrm_tasks` */
+
+DROP TABLE IF EXISTS `ecrm_tasks`;
+
+CREATE TABLE `ecrm_tasks` (
+  `user_id` int DEFAULT NULL,
+  `pipeline_id` int DEFAULT NULL,
+  `title` char(50) DEFAULT NULL,
+  `description` varchar(50) DEFAULT NULL,
+  `date_time` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+/*Data for the table `ecrm_tasks` */
+
+insert  into `ecrm_tasks`(`user_id`,`pipeline_id`,`title`,`description`,`date_time`) values 
+(3,31,'test','asdasdas','2020-07-25'),
+(3,31,'another groups','some important stuff','2020-07-25');
+
+/*Table structure for table `ecrm_uploads` */
+
+DROP TABLE IF EXISTS `ecrm_uploads`;
+
+CREATE TABLE `ecrm_uploads` (
+  `folder_id` int NOT NULL AUTO_INCREMENT,
+  `file_name` char(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`folder_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `ecrm_uploads` */
+
+/*Table structure for table `ecrm_users` */
+
+DROP TABLE IF EXISTS `ecrm_users`;
+
+CREATE TABLE `ecrm_users` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `referrer_code` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb3;
+
+/*Data for the table `ecrm_users` */
+
+insert  into `ecrm_users`(`user_id`,`referrer_code`) values 
+(3,'H1y1nO11w'),
+(11,'H1y1nO11w'),
+(21,'H1y1nO11w'),
+(44,'H1y1nO11w');
+
+/*Table structure for table `ecrm_users_folders` */
+
+DROP TABLE IF EXISTS `ecrm_users_folders`;
+
+CREATE TABLE `ecrm_users_folders` (
+  `user_id` int DEFAULT NULL,
+  `folder_id` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+/*Data for the table `ecrm_users_folders` */
+
+insert  into `ecrm_users_folders`(`user_id`,`folder_id`) values 
+(3,0),
+(3,0),
+(3,0),
+(3,0),
+(3,0),
+(3,0),
+(21,0),
+(3,0),
+(3,0);
+
+/*Table structure for table `ecrm_users_pipelines` */
+
+DROP TABLE IF EXISTS `ecrm_users_pipelines`;
+
+CREATE TABLE `ecrm_users_pipelines` (
+  `user_id` int DEFAULT NULL,
+  `pipeline_id` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+/*Data for the table `ecrm_users_pipelines` */
+
+insert  into `ecrm_users_pipelines`(`user_id`,`pipeline_id`) values 
+(3,11),
+(3,21),
+(3,31),
+(3,41),
+(21,51),
+(21,61),
+(21,71),
+(3,81),
+(3,91),
+(3,101),
+(3,111),
+(3,121),
+(3,131),
+(3,141),
+(3,151),
+(3,161),
+(3,171),
+(3,181),
+(3,191),
+(3,201),
+(3,211),
+(3,221),
+(3,231),
+(3,241),
+(3,251);
+
+/*Table structure for table `ecrm_users_projects` */
+
+DROP TABLE IF EXISTS `ecrm_users_projects`;
+
+CREATE TABLE `ecrm_users_projects` (
+  `user_id` int DEFAULT NULL,
+  `title` varchar(75) DEFAULT NULL,
+  `project_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+/*Data for the table `ecrm_users_projects` */
+
+insert  into `ecrm_users_projects`(`user_id`,`title`,`project_id`) values 
+(3,NULL,1),
+(3,NULL,11),
+(3,NULL,21),
+(21,NULL,31),
+(3,NULL,41),
+(3,NULL,51),
+(3,NULL,61),
+(3,NULL,71),
+(3,NULL,81),
+(3,NULL,91);
+
+/*Table structure for table `feedbacks` */
+
+DROP TABLE IF EXISTS `feedbacks`;
+
+CREATE TABLE `feedbacks` (
+  `user_id` int NOT NULL,
+  `feedback` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `app_id` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `feedbacks` */
+
+insert  into `feedbacks`(`user_id`,`feedback`,`app_id`) values 
+(3,'feedback offices',5),
+(3,'storages',8),
+(3,'link storage',6),
+(3,'interview feedbaks',7),
+(4,'some from edgar',4),
+(4,'another edgar',4),
+(3,'o',4),
+(3,'Test josh',4),
+(3,'from ECRM',5),
+(3,'IT feedback',3),
+(3,'after revamp the apps id',8),
+(3,'interview ffeedbacks after refactor databases',7),
+(3,'the profile feedback dab',1),
+(3,'Test feedback debt settlement ',4),
+(3,'test crm feedback',4),
+(3,'Feed back rest ',5),
+(3,'Feed back test 7/26/20 11:04',5),
+(3,'Test feedback CRM 7/26/2020 11:11',4),
+(3,'Social network ',1),
+(3,'Not able to create new pages ',3),
+(3,'Folder does not work.',5),
+(3,'THE FOLDERS ARE NOT WORKING',5),
+(3,'Profile pic uploading but not saved as you navigate the app. \r\n\r\nNot able to edit pipeline name afte',4),
+(3,'Need to add a delete project feature with confirmation to delete ',4),
+(3,'No grid appearing daily ',4),
+(3,'Not able to delete task',4),
+(3,'Storage is not storing files and storage don’t have delete button',4),
+(3,'Video voice mail need delete button ',4),
+(3,'Delete button don’t work',4),
+(3,'Need to include a third viewing function ',4),
+(3,'Need to add feature that will pull contacts from your phone to the contact mini app within this app ',4),
+(3,'This is great but you can make it better ',4),
+(3,'This page is not working. Hey I think if you put colors it would be good. ',4),
+(3,'There is a problem here ',1),
+(3,'The photo is side way.',4),
+(3,'Test',1),
+(3,'Videos does not play in app on minimum. There are no thumbnails. ',1),
+(3,'The add task and delete works but the time stamp is not accurate or not active. ',4),
+(3,'This page is good',4);
+
+/*Table structure for table `friends_list` */
+
+DROP TABLE IF EXISTS `friends_list`;
+
+CREATE TABLE `friends_list` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `id` int DEFAULT NULL,
+  `friend_id` int DEFAULT NULL,
+  `approved` int DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `friends_list` */
+
+insert  into `friends_list`(`user_id`,`id`,`friend_id`,`approved`) values 
+(1,NULL,4,1),
+(2,NULL,6,1),
+(3,NULL,5,1),
+(4,NULL,1,1),
+(5,NULL,3,1),
+(6,NULL,2,1),
+(7,NULL,2,1),
+(8,NULL,9,1),
+(9,NULL,8,1),
+(10,NULL,8,1),
+(11,NULL,8,1),
+(21,NULL,3,1),
+(31,NULL,3,1),
+(41,NULL,3,1),
+(44,NULL,3,1),
+(54,NULL,44,1);
+
+/*Table structure for table `inbox` */
+
+DROP TABLE IF EXISTS `inbox`;
+
+CREATE TABLE `inbox` (
+  `owner_id` int NOT NULL AUTO_INCREMENT,
+  `sender_id` int DEFAULT NULL,
+  `message` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `message_id` int DEFAULT NULL,
+  PRIMARY KEY (`owner_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `inbox` */
+
+insert  into `inbox`(`owner_id`,`sender_id`,`message`,`date`,`time`,`message_id`) values 
+(4,3,'test','0000-00-00','0000-00-00 00:00:00',NULL);
+
+/*Table structure for table `interview_accesscodes` */
+
+DROP TABLE IF EXISTS `interview_accesscodes`;
+
+CREATE TABLE `interview_accesscodes` (
+  `code` int NOT NULL AUTO_INCREMENT,
+  `accesscode_title` char(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `accesscode_summary` char(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `page_id` int DEFAULT NULL,
+  PRIMARY KEY (`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=123457 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `interview_accesscodes` */
+
+insert  into `interview_accesscodes`(`code`,`accesscode_title`,`accesscode_summary`,`page_id`) values 
+(1,'abc','test123',1),
+(123456,'test code','test',2);
+
+/*Table structure for table `interview_pages` */
+
+DROP TABLE IF EXISTS `interview_pages`;
+
+CREATE TABLE `interview_pages` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `summary` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `content` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `instruction` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `interview_pages` */
+
+insert  into `interview_pages`(`id`,`name`,`title`,`summary`,`content`,`instruction`) values 
+(1,'introduction','Intro','test123','abc','aaa'),
+(2,'test-page','test page','test','test abc','lorem ');
+
+/*Table structure for table `interview_questions` */
+
+DROP TABLE IF EXISTS `interview_questions`;
+
+CREATE TABLE `interview_questions` (
+  `page_id` int NOT NULL AUTO_INCREMENT,
+  `question` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`page_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `interview_questions` */
+
+insert  into `interview_questions`(`page_id`,`question`) values 
+(2,'afdfagd?');
+
+/*Table structure for table `interview_users` */
+
+DROP TABLE IF EXISTS `interview_users`;
+
+CREATE TABLE `interview_users` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `referrer_code` int DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `interview_users` */
+
+insert  into `interview_users`(`user_id`,`referrer_code`) values 
+(3,0);
+
+/*Table structure for table `ledger` */
+
+DROP TABLE IF EXISTS `ledger`;
+
+CREATE TABLE `ledger` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `to_user` char(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `to_user_amount` int DEFAULT NULL,
+  `from_user` char(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `ledger` */
+
+insert  into `ledger`(`id`,`to_user`,`to_user_amount`,`from_user`) values 
+(1,'pndx',1,'nyobi');
+
+/*Table structure for table `linkstore_folders` */
+
+DROP TABLE IF EXISTS `linkstore_folders`;
+
+CREATE TABLE `linkstore_folders` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `title` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `leader_id` int NOT NULL,
+  PRIMARY KEY (`id`,`leader_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `linkstore_folders` */
+
+insert  into `linkstore_folders`(`id`,`title`,`leader_id`) values 
+(2,'aaa',3),
+(10,'Good',3);
+
+/*Table structure for table `linkstore_links` */
+
+DROP TABLE IF EXISTS `linkstore_links`;
+
+CREATE TABLE `linkstore_links` (
+  `link_id` int NOT NULL AUTO_INCREMENT,
+  `folder_id` int DEFAULT NULL,
+  `title` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`link_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `linkstore_links` */
+
+/*Table structure for table `linkstore_users` */
+
+DROP TABLE IF EXISTS `linkstore_users`;
+
+CREATE TABLE `linkstore_users` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `referrer_code` int DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `linkstore_users` */
+
+insert  into `linkstore_users`(`user_id`,`referrer_code`) values 
+(3,0);
+
+/*Table structure for table `linkstore_users_folders` */
+
+DROP TABLE IF EXISTS `linkstore_users_folders`;
+
+CREATE TABLE `linkstore_users_folders` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT NULL,
+  `folder_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `linkstore_users_folders` */
+
+insert  into `linkstore_users_folders`(`id`,`user_id`,`folder_id`) values 
+(4,3,1),
+(5,3,3),
+(6,3,4),
+(7,3,5),
+(8,3,6),
+(9,3,7),
+(10,44,5),
+(11,3,8),
+(12,3,9),
+(13,3,10);
+
+/*Table structure for table `process_multiplechoices` */
+
+DROP TABLE IF EXISTS `process_multiplechoices`;
+
+CREATE TABLE `process_multiplechoices` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `mc_question` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `a` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `b` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `c` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `d` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `correct_answer` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `page_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `process_multiplechoices` */
+
+insert  into `process_multiplechoices`(`id`,`mc_question`,`a`,`b`,`c`,`d`,`correct_answer`,`page_id`) values 
+(1,'how many legs does spider have?','4','6','8','10','c',3),
+(11,'Is it better to be mentored or do it alone?','Mentor','Coach','Sponsor','All of the above','d',11),
+(14,'Hello?','1','2','3','4','a',14);
+
+/*Table structure for table `process_pages` */
+
+DROP TABLE IF EXISTS `process_pages`;
+
+CREATE TABLE `process_pages` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `summary` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `content` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `instruction` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `process_pages` */
+
+insert  into `process_pages`(`id`,`name`,`title`,`summary`,`content`,`instruction`) values 
+(3,'introduction','TI','SOME GUY with it background','all about computer stuff','some awesome content'),
+(11,'Step 2','What do you think?','Lots of people don’t know if they need to be coach','Teach people how to think.','Teach people how to think.'),
+(14,'Hello','Hello','Hello','','');
+
+/*Table structure for table `process_prospects` */
+
+DROP TABLE IF EXISTS `process_prospects`;
+
+CREATE TABLE `process_prospects` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `referrer_code` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `latest_unlock_page_id` int DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `process_prospects` */
+
+insert  into `process_prospects`(`user_id`,`referrer_code`,`latest_unlock_page_id`) values 
+(1,'H1y1nO11w',3),
+(3,'H1y1nO11w',3),
+(44,'H1y1nO11w',3);
+
+/*Table structure for table `process_questions` */
+
+DROP TABLE IF EXISTS `process_questions`;
+
+CREATE TABLE `process_questions` (
+  `page_id` int NOT NULL AUTO_INCREMENT,
+  `question` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`page_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `process_questions` */
+
+insert  into `process_questions`(`page_id`,`question`) values 
+(11,'How did you love this question?'),
+(14,'');
+
+/*Table structure for table `profile` */
+
+DROP TABLE IF EXISTS `profile`;
+
+CREATE TABLE `profile` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `wall_img` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `profile_img` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `profile_img_status` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `profile` */
+
+insert  into `profile`(`user_id`,`wall_img`,`profile_img`,`profile_img_status`) values 
+(3,'A96A68FA-F5E6-42B6-8D0A-9BF396B55B02.jpeg','30077F39-70D6-453D-989A-9C10C8588E3A.jpeg','1'),
+(11,NULL,NULL,NULL),
+(21,NULL,NULL,NULL),
+(31,NULL,NULL,NULL),
+(41,NULL,NULL,NULL),
+(44,NULL,'image.jpg','6'),
+(54,NULL,'IND100.png','-2');
+
+/*Table structure for table `profile_media_photos` */
+
+DROP TABLE IF EXISTS `profile_media_photos`;
+
+CREATE TABLE `profile_media_photos` (
+  `photo_id` int NOT NULL AUTO_INCREMENT,
+  `owner_id` int DEFAULT NULL,
+  `image` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `migrated` int DEFAULT NULL,
+  PRIMARY KEY (`photo_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `profile_media_photos` */
+
+insert  into `profile_media_photos`(`photo_id`,`owner_id`,`image`,`migrated`) values 
+(5,3,'manipulation-final1.jpg',NULL);
+
+/*Table structure for table `profile_media_videos` */
+
+DROP TABLE IF EXISTS `profile_media_videos`;
+
+CREATE TABLE `profile_media_videos` (
+  `video_id` int NOT NULL AUTO_INCREMENT,
+  `owner_id` int DEFAULT NULL,
+  `video` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `migrated` int DEFAULT NULL,
+  PRIMARY KEY (`video_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `profile_media_videos` */
+
+insert  into `profile_media_videos`(`video_id`,`owner_id`,`video`,`migrated`) values 
+(5,3,'1. Introduction.mp4',NULL),
+(7,3,'2. Creating a New Project.mp4',NULL),
+(8,3,'yt5s.com-Chris Brown - Turn Up the Music-(1080p).mp4',NULL);
+
+/*Table structure for table `profile_personal_info` */
+
+DROP TABLE IF EXISTS `profile_personal_info`;
+
+CREATE TABLE `profile_personal_info` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `birthday` date DEFAULT NULL,
+  `height` int DEFAULT NULL,
+  `eye_color` char(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `hair_color` char(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `religion` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `smoke` char(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `drink` char(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `job_title` char(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nationality` char(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `language` char(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `children` int DEFAULT NULL,
+  `description` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `favorite` char(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `hobby` char(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `skill` char(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `dream` char(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `quote` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `event` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `family` char(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `group` char(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `education` char(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `like` char(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `philosophy` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` char(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `question` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `career` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `real_me` char(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `business` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `my_life` char(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `goal` char(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `life_line` char(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pet` char(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `profile_personal_info` */
+
+insert  into `profile_personal_info`(`user_id`,`birthday`,`height`,`eye_color`,`hair_color`,`religion`,`smoke`,`drink`,`company`,`job_title`,`nationality`,`language`,`children`,`description`,`favorite`,`hobby`,`skill`,`dream`,`quote`,`event`,`family`,`group`,`education`,`like`,`philosophy`,`status`,`question`,`career`,`real_me`,`business`,`my_life`,`goal`,`life_line`,`pet`) values 
+(3,'0000-00-00',0,'black','','Test','heavily','','','','','',0,'','guitar play','writing code for fun','Golang DEvOps','','','','','','','','','','','','','','','','',''),
+(5,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(11,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(21,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(31,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(41,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(44,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+(54,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+
+/*Table structure for table `prospect` */
+
+DROP TABLE IF EXISTS `prospect`;
+
+CREATE TABLE `prospect` (
+  `referrer_code` int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`referrer_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `prospect` */
+
+/*Table structure for table `referrer` */
+
+DROP TABLE IF EXISTS `referrer`;
+
+CREATE TABLE `referrer` (
+  `username` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `referrer` */
+
+insert  into `referrer`(`username`) values 
+('Portgaz D ace');
+
+/*Table structure for table `storage` */
+
+DROP TABLE IF EXISTS `storage`;
+
+CREATE TABLE `storage` (
+  `owner_id` int NOT NULL AUTO_INCREMENT,
+  `storage_id` int DEFAULT NULL,
+  PRIMARY KEY (`owner_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `storage` */
+
+insert  into `storage`(`owner_id`,`storage_id`) values 
+(3,NULL);
+
+/*Table structure for table `storage_files` */
+
+DROP TABLE IF EXISTS `storage_files`;
+
+CREATE TABLE `storage_files` (
+  `source_id` int NOT NULL AUTO_INCREMENT,
+  `file` char(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`source_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `storage_files` */
+
+/*Table structure for table `storage_folders` */
+
+DROP TABLE IF EXISTS `storage_folders`;
+
+CREATE TABLE `storage_folders` (
+  `id` int NOT NULL,
+  `owner_id` int DEFAULT NULL,
+  `title` char(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `storage_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `storage_folders` */
+
+/*Table structure for table `storage_folders_files` */
+
+DROP TABLE IF EXISTS `storage_folders_files`;
+
+CREATE TABLE `storage_folders_files` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `file` char(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `source_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `storage_folders_files` */
+
+/*Table structure for table `storage_folders_users` */
+
+DROP TABLE IF EXISTS `storage_folders_users`;
+
+CREATE TABLE `storage_folders_users` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `source_id` int DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `storage_folders_users` */
+
+/*Table structure for table `storage_users` */
+
+DROP TABLE IF EXISTS `storage_users`;
+
+CREATE TABLE `storage_users` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `referrer_code` int DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `storage_users` */
+
+insert  into `storage_users`(`user_id`,`referrer_code`) values 
+(3,0);
+
+/*Table structure for table `storage_users_storage` */
+
+DROP TABLE IF EXISTS `storage_users_storage`;
+
+CREATE TABLE `storage_users_storage` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `source_id` int DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `storage_users_storage` */
+
+/*Table structure for table `users` */
+
+DROP TABLE IF EXISTS `users`;
+
+CREATE TABLE `users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `is_superAdmin` tinyint(1) DEFAULT NULL,
+  `first_name` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_name` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `username` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_admin` tinyint(1) DEFAULT NULL,
+  `is_teamadmin` tinyint(1) DEFAULT NULL,
+  `referrer` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `points` int DEFAULT NULL,
+  `user_code` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `users` */
+
+insert  into `users`(`id`,`is_superAdmin`,`first_name`,`last_name`,`email`,`username`,`password`,`is_admin`,`is_teamadmin`,`referrer`,`points`,`user_code`) values 
+(1,1,'trewelu','ta','theloiagj@ja.com','zoro','thelogok',NULL,1,NULL,16,NULL),
+(2,NULL,'pndx','ace','pndxDace@gmail.com','pndx','$2a$10$JWdQ9N7SD96wjKRWSWW.res4xKDK/q5YCyXpmE26GDURCWH94s5cm',1,1,'zoro',3,'ryL_iOJyw'),
+(3,1,'nyobi111','nttaa','mahran996@gmail.com','nyobi','$2a$10$riCYSuNjHZ0zc4B6zxIocuQQ4h.yYKXWWSvaWl/sIPo5UZwXfIRRW',1,1,'pndx',16,'H1y1nO11w'),
+(4,NULL,'edgar','fer','feredagar@gmail.com','edgar','$2a$10$HBfGXwLgMvSVGy/BatAPFOG/JuHRFWCCc625J5.77fyoqby7yxu5W',NULL,NULL,'pndx',NULL,'SyBHpdkJP'),
+(5,NULL,'asut','lonlon','citra.anggyx@gmail.com','cita','$2a$10$GiCSBQBDf3qTUo8jYag07OtB.ARHyb2zOrl0fn5qQul/ztd23rZpG',NULL,NULL,'nyobi',NULL,'ryps03JkD'),
+(44,NULL,'Josh','Omni','Omni8020@gmail.com','Omni00','$2a$10$ugdNT9WGumX8LtnYV0wVR.ZyXS7V52APnCpoYrQyzQu0pyOFEAyLK',1,1,'nyobi',2,'rJ21IIGQ9');
+
+/*Table structure for table `users_apps` */
+
+DROP TABLE IF EXISTS `users_apps`;
+
+CREATE TABLE `users_apps` (
+  `app_id` int NOT NULL,
+  `user_id` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+/*Data for the table `users_apps` */
+
+insert  into `users_apps`(`app_id`,`user_id`) values 
+(2,2),
+(2,11),
+(4,21),
+(2,21),
+(2,3),
+(4,44),
+(2,44),
+(1,44),
+(5,44),
+(1,54),
+(4,54),
+(11,3),
+(134,3);
+
+/*Table structure for table `wall` */
+
+DROP TABLE IF EXISTS `wall`;
+
+CREATE TABLE `wall` (
+  `post_id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT NULL,
+  `post_user_id` int DEFAULT NULL,
+  `post_media` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `post_text` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `app` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `time` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`post_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `wall` */
+
+insert  into `wall`(`post_id`,`user_id`,`post_user_id`,`post_media`,`post_text`,`app`,`date`,`time`) values 
+(45,3,3,'WhatsApp Image 2019-02-06',NULL,'process_crm','0000-00-00','0000-00-00'),
+(46,44,44,NULL,'Welcome','profile','0000-00-00','0000-00-00'),
+(48,3,3,NULL,'aaaa','profile','9/16/2022','12:58:52'),
+(49,3,3,NULL,'vav','profile','9/16/2022','12:58:59'),
+(51,3,3,NULL,'hello ','profile','9/23/2022','02:16:59');
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

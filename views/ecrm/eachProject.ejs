@@ -1,0 +1,108 @@
+<% include ecrm-partials/ecrmHeader %>
+
+<div class="container crm page">
+	<% include ecrm-partials/navTabs %>
+	<hr>
+	<a href="/office/projects" class="float-right"> << Return to projects list</a>
+	<p id="title"><%= projects[0].title %></p>
+	<% if (isLeader) { %>
+		<form action="/office/project/<%= projects[0].project_id %>?_method=DELETE" method="POST">
+			<button class="btn btn-danger btn-sm float-right">Delete Project</button>
+		</form>
+	<% } %>
+	<% if (isLeader || isSubLeader) { %>
+		<p class="point-cursor" data-toggle="modal" data-target="#invite-users-form"><i class="fa fa-plus-circle" aria-hidden="true"></i> Invite users</p>
+	<% } %>
+	
+	<div>
+		<p>Current Users in project</p>
+		<ul>
+			<span class="project-id display-none"><%= projects[0].project_id %></span>
+			<% projects.forEach(function(p, i) { -%>
+				<% if (i !== 0) { -%>
+					<% if (p.is_sub_leader) { %>
+						<% if (currentUserIsLeader) {%>
+							<li class="user-project point-cursor display-inline"><%= p.username %> <span class="small-text">Sub Leader</span></></li><button class="btn btn-default display-inline" data-toggle="modal" data-target="#remove-user-form-<%= p.user_id%>">x</button>
+						<% } else { %>
+							<li><%= p.username %> <span class="small-text">Sub Leader</span></></li>
+						<% } %>
+						<br>
+					<% } else { %>
+						<% if (currentUserIsLeader) {%>
+							<li class="user-project point-cursor display-inline"><%= p.username %> <span></span></li><button class="btn btn-default diplay-inline" data-toggle="modal" data-target="#remove-user-form-<%= p.user_id%>">x</button>
+						<% } else { %>
+							<li><%= p.username %> <span></span></li>
+						<% } %>
+						<br>
+					<% } %>
+					<!-- <li><%= p.username %> - <button class="btn btn-default" data-toggle="modal" data-target="#remove-user-form">x</button></li> -->
+					<!-- modal start -->
+					<div class="modal" id="remove-user-form-<%= p.user_id%>" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+						<div class="modal-dialog" role="document">
+					  	<div class="modal-content">
+					  		<button class="btn btn-danger btn-sm close-modal-form" data-dismiss="modal">Close</button>
+								<p class="sub-title">Are you sure you want to remove <%= p.username %></p>
+					  		<form action="/office/project/<%= p.project_id %>/remove?_method=DELETE" method="POST">
+						  		<button class="btn btn-danger" name="user_id" value="<%= p.user_id %>">Remove</button>
+						  	</form>
+							</div>
+						</div>
+					</div>
+					<!-- modal end -->
+				<% } else { -%>
+					<li><%= p.username %> - <span class="small-text">owner</span></li>
+				<% } -%>
+			<% }) -%>
+		</ul>
+	</div>
+
+	<h2>Pipelines</h2>
+	<% if (isLeader || isSubLeader) { %>
+		<p  class="point-cursor" data-toggle="modal" data-target="#add-pipeline-form"><i class="fa fa-plus-circle" aria-hidden="true"></i> Create pipeline</p>
+	<% } %>
+	<div class="pipelines">
+		<% for (var i=0;i<pipelines.length;i++) { -%>
+			<% if (pipelines[i].user_id === currentUser.id) { %>
+				<a href="/office/project/<%= projects[0].project_id %>/pipeline/<%= pipelines[i].pipeline_id %>"><button class="btn btn-primary pipeline-btn"> <%= pipelines[i].title %></button></a>
+			<% } %>
+		<% } -%>
+	</div>
+</div>
+
+<!-- modal start -->
+<div class="modal" id="invite-users-form" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+  	<div class="modal-content">
+  		<button class="btn btn-danger btn-sm close-modal-form" data-dismiss="modal">Close</button>
+  		<h3>Invite a user to project <%= projects.title %></h3>
+  		<form action="/office/project/<%= projects[0].project_id %>/invite" method="POST">
+				<div class="form-group">
+					<label for="username">Username</label>
+					<input type="text" name="username" class="form-control">
+				</div>
+	  		<button class="btn btn-success">Invite</button>
+	  	</form>
+		</div>
+	</div>
+</div>
+<!-- modal end -->
+
+<!-- modal start -->
+<div class="modal" id="add-pipeline-form" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+  	<div class="modal-content">
+  		<button class="btn btn-danger btn-sm close-modal-form" data-dismiss="modal">Close</button>
+  		<h3>Create a New Pipeline</h3>
+  		<form action="/office/project/<%= projects[0].project_id %>/createpipeline" method="POST">
+				<div class="form-group">
+					<label for="title">Name</label>
+					<input type="text" name="title" class="form-control">
+				</div>
+	  		<button class="btn btn-success">Create Pipeline</button>
+	  	</form>
+		</div>
+	</div>
+</div>
+<!-- modal end -->
+
+<% include ecrm-partials/ecrmFooter %>

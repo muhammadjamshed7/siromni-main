@@ -1,0 +1,42 @@
+<table id="comtasksTable">
+  <thead>
+    <tr>
+      <th class="each-task">Community Tasks</th>
+      <% filteredDays.forEach(function(date) { %>
+      <th class="each-task">
+        <%= date %>
+      </th>
+      <% }) %>
+    </tr>
+  </thead>
+  <tbody>
+
+    <% taskNames.forEach(function(taskName) { %>
+    <tr>
+      <td class="each-task">
+        <%= taskName %>
+      </td>
+      <% filteredDays.forEach(function(filterDay) { %>
+      <% var is_checkbox = false; %>
+      <% comTasks.forEach(function(task) { %>
+      <% if(task.task_date == filterDay && task.name == taskName ){%>
+      <% is_checkbox = true; %>
+      <td class="each-task each-task-cell">
+        <% if(task.completed == 1){%>
+        <input type="checkbox" checked data-id="<%= task.user_tasks_id %>" class="task-checkbox">
+        <%}else { %>
+        <input type="checkbox" data-id="<%= task.user_tasks_id %>" class="task-checkbox">
+        <% } %>
+      </td>
+      <% } %>
+      <% }) %>
+      <% if(!is_checkbox ){%>
+      <td class="each-task">
+        &nbsp;
+      </td>
+      <% } %>
+      <% }) %>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
